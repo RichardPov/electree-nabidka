@@ -32,16 +32,6 @@ export function CTASection() {
             </div>
           </div>
 
-          <div className="cta-disclaimer">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }} aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
-            </svg>
-            <p className="cta-disclaimer-text">
-              Tato nabídka má <strong style={{ color: "rgba(255,255,255,0.45)" }}>indikativní charakter</strong> a vychází z informací poskytnutých při telefonickém hovoru.
-              Konečné podmínky a ceny budou upřesněny po zadání kompletních údajů.
-              Nabídka č. {OFFER.offerNumber}.
-            </p>
-          </div>
         </div>
       </div>
 
