@@ -80,7 +80,10 @@ export function MonthlyPayments() {
           {/* Savings callout row */}
           <div className="comp-savings-row">
             <div className="comp-savings-label">Úspora za 3 roky fixace</div>
-            <div className="comp-savings-val">{OFFER.savings.threeYear.toLocaleString("cs-CZ")} Kč</div>
+            <div className="comp-savings-val">
+              {OFFER.savings.threeYear.toLocaleString("cs-CZ")} Kč
+              <span className="comp-savings-pct">−{OFFER.savings.pct}%</span>
+            </div>
             <div className="comp-savings-empty">—</div>
           </div>
         </div>

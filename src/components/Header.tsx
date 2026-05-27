@@ -10,6 +10,7 @@ export function Header() {
     <>
       <div className="lime-bar" />
       <header className="hdr">
+        <div className="hdr-inner">
         <div className="hdr-logo">
           <ElectreeLogo />
         </div>
@@ -42,6 +43,7 @@ export function Header() {
 
           {/* Validity */}
           <span className="hdr-validity">Platnost do {OFFER.validity}</span>
+        </div>
         </div>
       </header>
     </>
