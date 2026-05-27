@@ -1,14 +1,73 @@
 "use client";
 
+import { useState } from "react";
 import { OFFER } from "@/lib/offer-data";
 import { useVat } from "@/lib/vat-context";
 
-function handlePdf() {
-  window.print();
-}
-
 export function Header() {
   const { vat, setVat } = useVat();
+  const [exporting, setExporting] = useState(false);
+
+  async function handlePdf() {
+    if (exporting) return;
+    setExporting(true);
+    try {
+      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
+        import("html2canvas"),
+        import("jspdf"),
+      ]);
+
+      // Hide chrome we don't want in the PDF
+      const toHide = [".hdr", ".lime-bar", ".cta-outer", ".footer"];
+      const restored: { el: HTMLElement; display: string }[] = [];
+      toHide.forEach(sel => {
+        document.querySelectorAll<HTMLElement>(sel).forEach(el => {
+          restored.push({ el, display: el.style.display });
+          el.style.display = "none";
+        });
+      });
+
+      // Capture the full page body at desktop width
+      const canvas = await html2canvas(document.body, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: null,
+        logging: false,
+        windowWidth: 1280,
+        scrollY: 0,
+      });
+
+      // Restore
+      restored.forEach(({ el, display }) => (el.style.display = display));
+
+      // Build a single-page PDF sized to match the capture exactly
+      const pxW = canvas.width;
+      const pxH = canvas.height;
+
+      // Use 96 dpi mapping: 1 CSS px = 0.75 pt
+      const ptW = pxW * 0.375; // /2 for scale then *0.75
+      const ptH = pxH * 0.375;
+
+      const pdf = new jsPDF({
+        orientation: ptW > ptH ? "landscape" : "portrait",
+        unit: "pt",
+        format: [ptW, ptH],
+      });
+
+      pdf.addImage(
+        canvas.toDataURL("image/jpeg", 0.93),
+        "JPEG",
+        0, 0,
+        ptW, ptH
+      );
+
+      pdf.save(`Electree-nabidka-${OFFER.offerNumber}.pdf`);
+    } catch (err) {
+      console.error("PDF export failed", err);
+    } finally {
+      setExporting(false);
+    }
+  }
 
   return (
     <>
@@ -41,14 +100,27 @@ export function Header() {
               Platnost do {OFFER.validity}
             </div>
 
-            <button className="pdf-btn" onClick={handlePdf} aria-label="Stáhnout nabídku jako PDF">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-              Stáhnout PDF
+            <button
+              className={`pdf-btn ${exporting ? "pdf-btn-loading" : ""}`}
+              onClick={handlePdf}
+              disabled={exporting}
+              aria-label="Stáhnout nabídku jako PDF"
+            >
+              {exporting ? (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
+                  style={{ animation: "spin 0.8s linear infinite" }} aria-hidden="true">
+                  <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                </svg>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              )}
+              {exporting ? "Generuji…" : "Stáhnout PDF"}
             </button>
           </div>
         </div>

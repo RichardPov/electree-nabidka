@@ -79,6 +79,9 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   white-space: nowrap;
 }
 .pdf-btn:hover { border-color: var(--dark); background: var(--soft); }
+.pdf-btn-loading { opacity: 0.65; cursor: default; }
+.pdf-btn-loading:hover { background: transparent; border-color: var(--mid); }
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .nav-sep { height: 14px; background: #fff; }
 
