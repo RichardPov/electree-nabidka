@@ -27,9 +27,9 @@ export function Hero() {
           <span className="hero-hl-line fu2">S Electree</span>
           <span className="hero-hl-line fu3">
             ušetříte{" "}
-            <em className="hero-headline-lime">
+            <span className="hero-headline-lime">
               {annualSavings.toLocaleString("cs-CZ")}&thinsp;Kč
-            </em>
+            </span>
           </span>
         </h1>
         <div className="hero-pill-chips fu4">

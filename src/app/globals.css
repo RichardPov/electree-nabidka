@@ -261,22 +261,21 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 }
 .hero-headline-lime {
   color: var(--lime);
-  font-style: italic;
 }
 .hero-pill-chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .hero-pill-chip {
   display: inline-flex; align-items: center;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(215,255,0,0.08);
+  border: 1px solid rgba(215,255,0,0.3);
   border-radius: var(--r-pill);
   padding: 7px 18px;
   font-size: 13px; font-weight: 500;
-  color: rgba(255,255,255,0.72);
+  color: var(--lime);
   transition: background 0.15s, border-color 0.15s;
 }
 .hero-pill-chip:hover {
-  background: rgba(255,255,255,0.11);
-  border-color: rgba(255,255,255,0.24);
+  background: rgba(215,255,0,0.13);
+  border-color: rgba(215,255,0,0.45);
 }
 
 .hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px; }
