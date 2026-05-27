@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-dark-green: #0D3D34;
+  --color-electric-green: #D7FF00;
+  --color-deep-teal: #20544A;
+  --color-blueish-green: #EBF7F1;
+  --color-blueish-darker: #D8EAE0;
+  --color-aqua-green: #96D5B7;
+  --color-fg-1: #0D3D34;
+  --color-fg-2: #3A3A3C;
+  --color-fg-3: #6B7280;
+  --color-fg-4: #7C9691;
+  --color-stroke: #D1DFD8;
+  --font-sans: var(--font-jakarta);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", sans-serif;
+  background: #ffffff;
+  color: #0d3d34;
+}
+
+/* Chart bar grow animations */
+@keyframes growUp {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.bar-animate {
+  transform-origin: bottom;
+  animation: growUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.bar-cez {
+  animation-delay: 0.3s;
+  transform: scaleY(0);
+}
+
+.bar-electree {
+  animation-delay: 0.5s;
+  transform: scaleY(0);
+}
+
+/* Smooth fade-in for hero elements */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.fade-up-1 { animation-delay: 0.1s; opacity: 0; }
+.fade-up-2 { animation-delay: 0.25s; opacity: 0; }
+.fade-up-3 { animation-delay: 0.4s; opacity: 0; }
+.fade-up-4 { animation-delay: 0.55s; opacity: 0; }
+.fade-up-5 { animation-delay: 0.7s; opacity: 0; }
+
+/* Header PDF button hover */
+.pdf-btn:hover {
+  background: rgba(255,255,255,0.14) !important;
 }
