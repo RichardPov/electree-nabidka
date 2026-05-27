@@ -1,18 +1,18 @@
-import { Header }         from "@/components/Header";
-import { ClientStrip }    from "@/components/ClientStrip";
-import { Hero }           from "@/components/Hero";
-import { SavingsMetrics } from "@/components/SavingsMetrics";
-import { MonthlyPayments }from "@/components/MonthlyPayments";
-import { PriceComparison }from "@/components/PriceComparison";
-import { Benefits }       from "@/components/Benefits";
-import { CTASection }     from "@/components/CTASection";
-import { Footer }         from "@/components/Footer";
+import { VatProvider }      from "@/lib/vat-context";
+import { Header }           from "@/components/Header";
+import { Hero }             from "@/components/Hero";
+import { SavingsMetrics }   from "@/components/SavingsMetrics";
+import { MonthlyPayments }  from "@/components/MonthlyPayments";
+import { PriceComparison }  from "@/components/PriceComparison";
+import { Benefits }         from "@/components/Benefits";
+import { CTASection }       from "@/components/CTASection";
+import { Footer }           from "@/components/Footer";
 
 export default function OfferPage() {
   return (
-    <>
+    <VatProvider>
       <Header />
-      <ClientStrip />
+      <div className="nav-sep" />
       <main>
         <Hero />
         <div style={{ background: "#fff" }}>
@@ -24,6 +24,6 @@ export default function OfferPage() {
         <CTASection />
       </main>
       <Footer />
-    </>
+    </VatProvider>
   );
 }

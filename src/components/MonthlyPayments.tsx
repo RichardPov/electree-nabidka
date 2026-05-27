@@ -1,4 +1,7 @@
+"use client";
+
 import { OFFER } from "@/lib/offer-data";
+import { useVat } from "@/lib/vat-context";
 
 type CellData =
   | { type: "check" }
@@ -13,8 +16,20 @@ const FEATURES: { label: string; cez: CellData; el: CellData }[] = [
 ];
 
 export function MonthlyPayments() {
-  const czMonthly3y = (OFFER.current.monthlyPaymentWithVat * 36).toLocaleString("cs-CZ");
-  const elMonthly3y = (OFFER.offer.monthlyPaymentWithVat * 36).toLocaleString("cs-CZ");
+  const { vat } = useVat();
+
+  const czMonthly = vat
+    ? OFFER.current.monthlyPaymentWithVat
+    : Math.round(OFFER.current.monthlyPaymentWithVat / (1 + OFFER.vat));
+  const elMonthly = vat
+    ? OFFER.offer.monthlyPaymentWithVat
+    : Math.round(OFFER.offer.monthlyPaymentWithVat / (1 + OFFER.vat));
+  const savings3y = vat
+    ? OFFER.savings.threeYear
+    : Math.round(OFFER.savings.threeYear / (1 + OFFER.vat));
+
+  const czMonthly3y = (czMonthly * 36).toLocaleString("cs-CZ");
+  const elMonthly3y = (elMonthly * 36).toLocaleString("cs-CZ");
 
   return (
     <section className="body-section" style={{ paddingTop: 0 }}>
@@ -23,7 +38,6 @@ export function MonthlyPayments() {
         <p className="sec-sub">Porovnání modelovaných záloh — při roční spotřebě {OFFER.client.consumptionMWh} MWh</p>
 
         <div className="comp-card">
-          {/* Column headers */}
           <div className="comp-hrow">
             <div className="comp-spacer" />
             <div className="comp-hcol comp-hcol-el">
@@ -37,23 +51,21 @@ export function MonthlyPayments() {
             </div>
           </div>
 
-          {/* Monthly payment row */}
           <div className="comp-row">
             <div className="comp-label">
               Měsíční záloha
-              <span className="comp-label-note">s DPH</span>
+              <span className="comp-label-note">{vat ? "s DPH 21 %" : "bez DPH"}</span>
             </div>
             <div className="comp-cell comp-cell-el">
-              <span className="comp-price-bold">{OFFER.offer.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč</span>
+              <span className="comp-price-bold">{elMonthly.toLocaleString("cs-CZ")} Kč</span>
               <span className="comp-period">/měs</span>
             </div>
             <div className="comp-cell comp-cell-cez">
-              <span className="comp-price-muted">{OFFER.current.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč</span>
+              <span className="comp-price-muted">{czMonthly.toLocaleString("cs-CZ")} Kč</span>
               <span className="comp-period">/měs</span>
             </div>
           </div>
 
-          {/* 3-year total row */}
           <div className="comp-row">
             <div className="comp-label">Celkem za 3 roky</div>
             <div className="comp-cell comp-cell-el">
@@ -64,7 +76,6 @@ export function MonthlyPayments() {
             </div>
           </div>
 
-          {/* Feature rows */}
           {FEATURES.map((row, i) => (
             <div className="comp-row" key={i}>
               <div className="comp-label">{row.label}</div>
@@ -77,11 +88,10 @@ export function MonthlyPayments() {
             </div>
           ))}
 
-          {/* Savings callout row */}
           <div className="comp-savings-row">
             <div className="comp-savings-label">Úspora za 3 roky fixace</div>
             <div className="comp-savings-val">
-              {OFFER.savings.threeYear.toLocaleString("cs-CZ")} Kč
+              {savings3y.toLocaleString("cs-CZ")} Kč
               <span className="comp-savings-pct">−{OFFER.savings.pct}%</span>
             </div>
             <div className="comp-savings-empty">—</div>

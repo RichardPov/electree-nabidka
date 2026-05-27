@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { OFFER } from "@/lib/offer-data";
+import { useVat } from "@/lib/vat-context";
 
-function p(n: number, vat: boolean) {
-  return (vat ? Math.round(n * 1.21) : n).toLocaleString("cs-CZ");
+function fmt(n: number, vat: boolean) {
+  return (vat ? Math.round(n * (1 + OFFER.vat)) : n).toLocaleString("cs-CZ");
 }
-function annual(mwh: number, fee: number, vat: boolean) {
-  return (vat ? Math.round((mwh * 4 + fee * 12) * 1.21) : Math.round(mwh * 4 + fee * 12)).toLocaleString("cs-CZ");
+function annual(pricePerMWh: number, monthlyFee: number, vat: boolean) {
+  const base = Math.round(pricePerMWh * OFFER.client.consumptionMWh + monthlyFee * 12);
+  return (vat ? Math.round(base * (1 + OFFER.vat)) : base).toLocaleString("cs-CZ");
 }
 
 export function PriceComparison() {
-  const [vat, setVat] = useState(true);
+  const { vat } = useVat();
 
   return (
     <section className="body-section" style={{ paddingTop: 0 }}>
@@ -23,11 +24,6 @@ export function PriceComparison() {
               Zobrazeno {vat ? "s DPH 21 %" : "bez DPH"}
             </p>
           </div>
-          {/* DPH toggle */}
-          <div className="dph-toggle" role="group" aria-label="Zobrazení cen" style={{ alignSelf: "center" }}>
-            <button className={`dph-btn ${!vat ? "dph-on" : "dph-off"}`} onClick={() => setVat(false)}>Bez DPH</button>
-            <button className={`dph-btn ${vat ? "dph-on" : "dph-off"}`}  onClick={() => setVat(true)}>S DPH 21%</button>
-          </div>
         </div>
 
         <div className="price-grid">
@@ -37,16 +33,16 @@ export function PriceComparison() {
               Electree
               <span className="pc-badge">Naše nabídka</span>
             </div>
-            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{p(OFFER.offer.pricePerMWhExVat, vat)} Kč/MWh</span></div>
-            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{p(OFFER.offer.monthlyFeeExVat, vat)} Kč/měs</span></div>
+            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{fmt(OFFER.offer.pricePerMWhExVat, vat)} Kč/MWh</span></div>
+            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{fmt(OFFER.offer.monthlyFeeExVat, vat)} Kč/měs</span></div>
             <div className="pc-row"><span className="pc-label">Roční náklady (komodita)</span><span className="pc-val">{annual(OFFER.offer.pricePerMWhExVat, OFFER.offer.monthlyFeeExVat, vat)} Kč</span></div>
           </div>
 
           {/* ČEZ second */}
           <div className="price-card">
             <div className="pc-sup">ČEZ — současná cena</div>
-            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{p(OFFER.current.pricePerMWhExVat, vat)} Kč/MWh</span></div>
-            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{p(OFFER.current.monthlyFeeExVat, vat)} Kč/měs</span></div>
+            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{fmt(OFFER.current.pricePerMWhExVat, vat)} Kč/MWh</span></div>
+            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{fmt(OFFER.current.monthlyFeeExVat, vat)} Kč/měs</span></div>
             <div className="pc-row"><span className="pc-label">Roční náklady (komodita)</span><span className="pc-val">{annual(OFFER.current.pricePerMWhExVat, OFFER.current.monthlyFeeExVat, vat)} Kč</span></div>
           </div>
         </div>
