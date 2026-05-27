@@ -31,15 +31,7 @@ export function PriceComparison() {
         </div>
 
         <div className="price-grid">
-          {/* CEZ */}
-          <div className="price-card">
-            <div className="pc-sup">ČEZ — současná cena</div>
-            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{p(OFFER.current.pricePerMWhExVat, vat)} Kč/MWh</span></div>
-            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{p(OFFER.current.monthlyFeeExVat, vat)} Kč/měs</span></div>
-            <div className="pc-row"><span className="pc-label">Roční náklady (komodita)</span><span className="pc-val">{annual(OFFER.current.pricePerMWhExVat, OFFER.current.monthlyFeeExVat, vat)} Kč</span></div>
-          </div>
-
-          {/* Electree */}
+          {/* Electree first */}
           <div className="price-card price-card-our">
             <div className="pc-sup">
               Electree
@@ -48,6 +40,14 @@ export function PriceComparison() {
             <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{p(OFFER.offer.pricePerMWhExVat, vat)} Kč/MWh</span></div>
             <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{p(OFFER.offer.monthlyFeeExVat, vat)} Kč/měs</span></div>
             <div className="pc-row"><span className="pc-label">Roční náklady (komodita)</span><span className="pc-val">{annual(OFFER.offer.pricePerMWhExVat, OFFER.offer.monthlyFeeExVat, vat)} Kč</span></div>
+          </div>
+
+          {/* ČEZ second */}
+          <div className="price-card">
+            <div className="pc-sup">ČEZ — současná cena</div>
+            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{p(OFFER.current.pricePerMWhExVat, vat)} Kč/MWh</span></div>
+            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{p(OFFER.current.monthlyFeeExVat, vat)} Kč/měs</span></div>
+            <div className="pc-row"><span className="pc-label">Roční náklady (komodita)</span><span className="pc-val">{annual(OFFER.current.pricePerMWhExVat, OFFER.current.monthlyFeeExVat, vat)} Kč</span></div>
           </div>
         </div>
 
