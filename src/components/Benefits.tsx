@@ -18,7 +18,7 @@ const items = [
 
 export function Benefits() {
   return (
-    <section className="body-section" style={{ paddingTop: 12, paddingBottom: 12 }}>
+    <section className="body-section">
       <div className="body-inner">
         <div className="benefits-grid">
           {items.map((b, i) => (
