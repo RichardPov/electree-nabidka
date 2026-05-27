@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { OFFER } from "@/lib/offer-data";
+import { useVat } from "@/lib/vat-context";
 import { SavingsChart } from "./SavingsChart";
 import { SignModal } from "./SignModal";
 import { CallModal } from "./CallModal";
@@ -9,6 +10,11 @@ import { CallModal } from "./CallModal";
 export function Hero() {
   const [signOpen, setSignOpen] = useState(false);
   const [callOpen, setCallOpen] = useState(false);
+  const { vat } = useVat();
+
+  const annualSavings = vat
+    ? OFFER.savings.annual
+    : Math.round(OFFER.savings.annual / (1 + OFFER.vat));
 
   return (
     <>
@@ -24,8 +30,8 @@ export function Hero() {
             </div>
 
             <p className="hero-label fu2">S Electree ušetříte ročně</p>
-            <div className="hero-amount fu2" aria-label={`${OFFER.savings.annual.toLocaleString("cs-CZ")} korun ročně`}>
-              {OFFER.savings.annual.toLocaleString("cs-CZ")} Kč
+            <div className="hero-amount fu2" aria-label={`${annualSavings.toLocaleString("cs-CZ")} korun ročně`}>
+              {annualSavings.toLocaleString("cs-CZ")} Kč
             </div>
             <p className="hero-sub fu2">
               oproti vašemu současnému dodavateli {OFFER.current.supplier}

@@ -1,32 +1,39 @@
+"use client";
+
 import { OFFER } from "@/lib/offer-data";
+import { useVat } from "@/lib/vat-context";
 
 type IconId = "banknote" | "barchart" | "award";
 
-const cards: { iconId: IconId; value: string; label: string; badge: string; hl: boolean }[] = [
-  {
-    iconId: "banknote",
-    value: `${OFFER.savings.monthly.toLocaleString("cs-CZ")} Kč`,
-    label: "měsíčně méně na zálohách",
-    badge: `−${OFFER.savings.pct} % měsíčně`,
-    hl: false,
-  },
-  {
-    iconId: "barchart",
-    value: `${OFFER.savings.annual.toLocaleString("cs-CZ")} Kč`,
-    label: "ušetříte za rok",
-    badge: "roční úspora",
-    hl: false,
-  },
-  {
-    iconId: "award",
-    value: `${OFFER.savings.threeYear.toLocaleString("cs-CZ")} Kč`,
-    label: `celková úspora za ${OFFER.offer.fixYears} roky fixace`,
-    badge: "za celou fixaci",
-    hl: true,
-  },
-];
-
 export function SavingsMetrics() {
+  const { vat } = useVat();
+
+  const adj = (n: number) => vat ? n : Math.round(n / (1 + OFFER.vat));
+
+  const cards: { iconId: IconId; value: string; label: string; badge: string; hl: boolean }[] = [
+    {
+      iconId: "banknote",
+      value: `${adj(OFFER.savings.monthly).toLocaleString("cs-CZ")} Kč`,
+      label: "měsíčně méně na zálohách",
+      badge: `−${OFFER.savings.pct} % měsíčně`,
+      hl: false,
+    },
+    {
+      iconId: "barchart",
+      value: `${adj(OFFER.savings.annual).toLocaleString("cs-CZ")} Kč`,
+      label: "ušetříte za rok",
+      badge: "roční úspora",
+      hl: false,
+    },
+    {
+      iconId: "award",
+      value: `${adj(OFFER.savings.threeYear).toLocaleString("cs-CZ")} Kč`,
+      label: `celková úspora za ${OFFER.offer.fixYears} roky fixace`,
+      badge: "za celou fixaci",
+      hl: true,
+    },
+  ];
+
   return (
     <section className="body-section">
       <div className="body-inner">
