@@ -11,15 +11,18 @@ export function Header() {
   async function handlePdf() {
     if (exporting) return;
     setExporting(true);
+
+    const toHide = [".hdr", ".lime-bar", ".cta-outer", ".footer"];
+    const restored: { el: HTMLElement; display: string }[] = [];
+
     try {
       const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
         import("html2canvas"),
         import("jspdf"),
       ]);
 
-      // Hide chrome we don't want in the PDF
-      const toHide = [".hdr", ".lime-bar", ".cta-outer", ".footer"];
-      const restored: { el: HTMLElement; display: string }[] = [];
+      window.scrollTo(0, 0);
+
       toHide.forEach(sel => {
         document.querySelectorAll<HTMLElement>(sel).forEach(el => {
           restored.push({ el, display: el.style.display });
@@ -27,25 +30,20 @@ export function Header() {
         });
       });
 
-      // Capture the full page body at desktop width
+      await new Promise(r => setTimeout(r, 120));
+
       const canvas = await html2canvas(document.body, {
         scale: 2,
         useCORS: true,
-        backgroundColor: null,
+        backgroundColor: "#ffffff",
         logging: false,
         windowWidth: 1280,
         scrollY: 0,
       });
 
-      // Restore
-      restored.forEach(({ el, display }) => (el.style.display = display));
-
-      // Build a single-page PDF sized to match the capture exactly
       const pxW = canvas.width;
       const pxH = canvas.height;
-
-      // Use 96 dpi mapping: 1 CSS px = 0.75 pt
-      const ptW = pxW * 0.375; // /2 for scale then *0.75
+      const ptW = pxW * 0.375;
       const ptH = pxH * 0.375;
 
       const pdf = new jsPDF({
@@ -54,17 +52,12 @@ export function Header() {
         format: [ptW, ptH],
       });
 
-      pdf.addImage(
-        canvas.toDataURL("image/jpeg", 0.93),
-        "JPEG",
-        0, 0,
-        ptW, ptH
-      );
-
+      pdf.addImage(canvas.toDataURL("image/jpeg", 0.93), "JPEG", 0, 0, ptW, ptH);
       pdf.save(`Electree-nabidka-${OFFER.offerNumber}.pdf`);
     } catch (err) {
       console.error("PDF export failed", err);
     } finally {
+      restored.forEach(({ el, display }) => (el.style.display = display));
       setExporting(false);
     }
   }
