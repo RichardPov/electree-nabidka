@@ -26,7 +26,7 @@ export function SavingsMetrics() {
     {
       iconId: "award",
       value: `${adj(OFFER.savings.threeYear).toLocaleString("cs-CZ")} Kč`,
-      label: "za celou dobu fixace",
+      label: `celková úspora za ${OFFER.offer.fixYears} roky fixace`,
       badge: "za celou fixaci",
     },
   ];
