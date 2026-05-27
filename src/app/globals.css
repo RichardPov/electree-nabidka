@@ -223,6 +223,20 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 }
 .hchip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
 
+/* Single-column hero (no chart) */
+.hero-single {
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 620px;
+}
+
+.hero-lime-chips { display: flex; flex-wrap: wrap; gap: 20px; }
+.hero-lime-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--lime);
+  font-size: 13px; font-weight: 600;
+}
+
 .hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px; }
 
 /* Primary CTA — lime bg + dark text (on dark hero) */
