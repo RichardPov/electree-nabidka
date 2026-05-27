@@ -61,7 +61,6 @@ export function KeyMetrics() {
           </div>
 
           <div className="km-card km-card-dark">
-            <div className="km-badge-key">★&nbsp;Klíčové</div>
             <div className="km-eyebrow km-eyebrow-dark">Měsíční záloha</div>
             <div className="km-value km-value-lime">
               {fmt(monthlyPayment)}&thinsp;<span className="km-unit">Kč</span>

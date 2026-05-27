@@ -18,15 +18,21 @@ export function Hero() {
 
   return (
     <section className="hero-wrap">
-      <div className="hero hero-single">
-        <div className="hero-eyebrow">Nabídka platná do {OFFER.validity}</div>
+      <div className="hero-inner">
+        <p className="hero-eyebrow fu1">
+          <span className="hero-eyebrow-dot" aria-hidden="true" />
+          Nabídka platná do {OFFER.validity}
+        </p>
         <h1 className="hero-headline">
-          S Electree ušetříte{" "}
-          <em className="hero-headline-lime">
-            {annualSavings.toLocaleString("cs-CZ")}&thinsp;Kč
-          </em>
+          <span className="hero-hl-line fu2">S Electree</span>
+          <span className="hero-hl-line fu3">
+            ušetříte{" "}
+            <em className="hero-headline-lime">
+              {annualSavings.toLocaleString("cs-CZ")}&thinsp;Kč
+            </em>
+          </span>
         </h1>
-        <div className="hero-pill-chips">
+        <div className="hero-pill-chips fu4">
           {chips.map((c, i) => (
             <div key={i} className="hero-pill-chip">{c}</div>
           ))}
