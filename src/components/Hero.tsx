@@ -16,20 +16,13 @@ export function Hero() {
           </div>
 
           {/* Label + big number */}
-          <p className="hero-label fu2">S Electree ušetříte každý měsíc</p>
-          <div className="hero-amount fu2" aria-label={`${OFFER.savings.monthly.toLocaleString("cs-CZ")} korun každý měsíc`}>
-            {OFFER.savings.monthly.toLocaleString("cs-CZ")} Kč
+          <p className="hero-label fu2">S Electree ušetříte ročně</p>
+          <div className="hero-amount fu2" aria-label={`${OFFER.savings.annual.toLocaleString("cs-CZ")} korun ročně`}>
+            {OFFER.savings.annual.toLocaleString("cs-CZ")} Kč
           </div>
           <p className="hero-sub fu2">
             oproti vašemu současnému dodavateli {OFFER.current.supplier}
           </p>
-
-          {/* Chips */}
-          <div className="hero-chips fu3">
-            <span className="hchip"><span className="hchip-dot" aria-hidden="true" />Fixní cena na {OFFER.offer.fixYears} roky</span>
-            <span className="hchip"><span className="hchip-dot" aria-hidden="true" />100% zelená energie</span>
-            <span className="hchip"><span className="hchip-dot" aria-hidden="true" />Bez skrytých poplatků</span>
-          </div>
 
           {/* CTAs */}
           <div className="hero-ctas fu4">

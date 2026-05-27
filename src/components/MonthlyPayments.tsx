@@ -3,43 +3,45 @@ import { OFFER } from "@/lib/offer-data";
 export function MonthlyPayments() {
   const czMonthly3y = (OFFER.current.monthlyPaymentWithVat * 36).toLocaleString("cs-CZ");
   const elMonthly3y = (OFFER.offer.monthlyPaymentWithVat * 36).toLocaleString("cs-CZ");
+  const elBarPct = Math.round((OFFER.offer.monthlyPaymentWithVat / OFFER.current.monthlyPaymentWithVat) * 100);
 
   return (
     <section className="body-section" style={{ paddingTop: 0 }}>
       <div className="body-inner">
         <h2 className="sec-title">Měsíční zálohy</h2>
-        <div className="zal-card">
-          <div className="zal-hdr">
-            <span className="zal-hdr-text">
-              Porovnání modelovaných záloh — při roční spotřebě {OFFER.client.consumptionMWh} MWh
-            </span>
-          </div>
-          <div className="zal-body">
-            {/* ČEZ */}
-            <div className="zal-col zal-cez">
-              <div className="zal-sup">ČEZ (současný)</div>
-              <div className="zal-amt">{OFFER.current.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč</div>
-              <div className="zal-mo">/měsíc</div>
-              <div className="zal-3y">{czMonthly3y} Kč za 3 roky</div>
-            </div>
+        <p className="sec-sub">Porovnání modelovaných záloh — při roční spotřebě {OFFER.client.consumptionMWh} MWh</p>
 
-            {/* Middle */}
-            <div className="zal-mid">
-              <div className="zal-pct">−{OFFER.savings.pct}%</div>
-              <div className="zal-czk">−{OFFER.savings.monthly.toLocaleString("cs-CZ")} Kč/měs</div>
-              <div className="zal-arr">→</div>
+        <div className="zal-premium">
+          {/* ČEZ panel */}
+          <div className="zal-panel zal-panel-cez">
+            <div className="zal-psup">ČEZ — Současný dodavatel</div>
+            <div className="zal-pamount">{OFFER.current.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč</div>
+            <div className="zal-pmo">/měsíc s DPH</div>
+            <div className="zal-barwrap">
+              <div className="zal-bar zal-bar-cez" style={{ width: "100%" }} />
             </div>
-
-            {/* Electree */}
-            <div className="zal-col zal-electree">
-              <div className="zal-sup">Electree (nové)</div>
-              <div className="zal-amt">{OFFER.offer.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč</div>
-              <div className="zal-mo">/měsíc</div>
-              <div className="zal-3y">{elMonthly3y} Kč za 3 roky</div>
-            </div>
+            <div className="zal-p3y">{czMonthly3y} Kč za 3 roky</div>
           </div>
-          <div className="zal-ftr">
-            Celková úspora za 3 roky fixace: <strong>{OFFER.savings.threeYear.toLocaleString("cs-CZ")} Kč</strong>
+
+          {/* Electree panel */}
+          <div className="zal-panel zal-panel-electree">
+            <div className="zal-psup">
+              Electree — Vaše nová nabídka
+              <span className="zal-badge-our">Naše nabídka</span>
+            </div>
+            <div className="zal-pamount-row">
+              <div className="zal-pamount">{OFFER.offer.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč</div>
+              <div className="zal-pct-badge">−{OFFER.savings.pct}%</div>
+            </div>
+            <div className="zal-pmo">/měsíc s DPH</div>
+            <div className="zal-barwrap">
+              <div className="zal-bar zal-bar-electree" style={{ width: `${elBarPct}%` }} />
+            </div>
+            <div className="zal-p3y">{elMonthly3y} Kč za 3 roky</div>
+            <div className="zal-savings-row">
+              <span className="zal-savings-label">Ušetříte za 3 roky</span>
+              <span className="zal-savings-val">{OFFER.savings.threeYear.toLocaleString("cs-CZ")} Kč</span>
+            </div>
           </div>
         </div>
       </div>
