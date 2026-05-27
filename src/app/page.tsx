@@ -1,12 +1,15 @@
-import { VatProvider }      from "@/lib/vat-context";
-import { Header }           from "@/components/Header";
-import { Hero }             from "@/components/Hero";
-import { SavingsMetrics }   from "@/components/SavingsMetrics";
-import { MonthlyPayments }  from "@/components/MonthlyPayments";
-import { PriceComparison }  from "@/components/PriceComparison";
-import { Benefits }         from "@/components/Benefits";
-import { CTASection }       from "@/components/CTASection";
-import { Footer }           from "@/components/Footer";
+import { VatProvider }         from "@/lib/vat-context";
+import { Header }              from "@/components/Header";
+import { Hero }                from "@/components/Hero";
+import { SavingsMetrics }      from "@/components/SavingsMetrics";
+import { PaymentBreakdown }    from "@/components/PaymentBreakdown";
+import { Features }            from "@/components/Features";
+import { MonthlyPayments }     from "@/components/MonthlyPayments";
+import { PriceComparison }     from "@/components/PriceComparison";
+import { Benefits }            from "@/components/Benefits";
+import { ClientSection }       from "@/components/ClientSection";
+import { CTASection }          from "@/components/CTASection";
+import { Footer }              from "@/components/Footer";
 
 export default function OfferPage() {
   return (
@@ -16,9 +19,12 @@ export default function OfferPage() {
         <Hero />
         <div style={{ background: "#fff" }}>
           <SavingsMetrics />
+          <PaymentBreakdown />
+          <Features />
           <MonthlyPayments />
           <PriceComparison />
           <Benefits />
+          <ClientSection />
         </div>
         <CTASection />
       </main>

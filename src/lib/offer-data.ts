@@ -2,8 +2,13 @@ export const OFFER = {
   client: {
     name: "Jan Novák",
     initials: "JN",
+    address: "Václavská 12, Praha 5, 150 00",
     location: "Praha 5",
     consumptionMWh: 4,
+    ean: "859 182 400 000 000 001",
+    distributionRate: "D02d",
+    circuitBreaker: "3×25",
+    productName: "Home FIX 36",
   },
   current: {
     supplier: "ČEZ",
@@ -31,6 +36,12 @@ export const OFFER = {
     commodityAnnual: 1416,
     commodityThreeYear: 4248,
   },
+  breakdown: {
+    commodity:    61,
+    distribution: 23,
+    taxes:        16,
+  },
+  phone: "+420 800 123 456",
   validity: "9. 6. 2026",
   offerNumber: "2026-05-26-JN",
   vat: 0.21,

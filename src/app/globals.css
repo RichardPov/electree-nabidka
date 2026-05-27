@@ -629,6 +629,158 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 .ben-text  { font-size: 13px; color: var(--fg3); line-height: 1.55; }
 
 /* ═══════════════════════════════════════════
+   PAYMENT BREAKDOWN
+═══════════════════════════════════════════ */
+.pb-card {
+  background: #fff;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--mid);
+  overflow: hidden;
+}
+.pb-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding: 24px 28px 20px;
+}
+.pb-eyebrow {
+  font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--fg4); margin-bottom: 4px;
+}
+.pb-title {
+  font-size: 22px; font-weight: 900;
+  color: var(--dark); letter-spacing: -0.02em;
+}
+.pb-total {
+  font-size: 26px; font-weight: 900;
+  color: var(--dark); letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.pb-bar {
+  display: flex;
+  height: 10px;
+  margin: 0 28px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  gap: 3px;
+}
+.pb-bar-seg { height: 100%; border-radius: 4px; }
+.pb-rows { padding: 8px 0 0; }
+.pb-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 28px;
+  border-top: 1px solid var(--mid);
+}
+.pb-row-left { display: flex; align-items: flex-start; gap: 12px; }
+.pb-dot {
+  width: 10px; height: 10px; border-radius: 3px;
+  flex-shrink: 0; margin-top: 3px;
+}
+.pb-row-label {
+  font-size: 14px; font-weight: 700; color: var(--dark);
+}
+.pb-row-pct { font-weight: 500; color: var(--fg3); }
+.pb-row-sub { font-size: 12px; color: var(--fg3); margin-top: 2px; }
+.pb-row-amount {
+  font-size: 18px; font-weight: 800; color: var(--dark);
+  letter-spacing: -0.01em; white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   FEATURES (4 chips)
+═══════════════════════════════════════════ */
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.feat-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #fff;
+  border: 1px solid var(--mid);
+  border-radius: var(--r-md);
+  padding: 16px;
+}
+.feat-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: var(--soft);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.feat-title { font-size: 13px; font-weight: 700; color: var(--dark); line-height: 1.3; margin-bottom: 3px; }
+.feat-sub   { font-size: 11px; color: var(--fg3); line-height: 1.4; }
+
+/* ═══════════════════════════════════════════
+   CLIENT SECTION
+═══════════════════════════════════════════ */
+.cs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cs-client-card {
+  background: var(--dark);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+}
+.cs-client-eyebrow {
+  font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 8px;
+}
+.cs-client-name {
+  font-size: 30px; font-weight: 900;
+  color: #fff; letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.cs-client-address { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+.cs-divider { height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 18px; }
+.cs-rows { display: flex; flex-direction: column; gap: 10px; }
+.cs-row  { display: flex; justify-content: space-between; align-items: center; }
+.cs-key  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.3); }
+.cs-val  { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); }
+
+.cs-contact-card {
+  background: var(--soft);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  border: 1px solid var(--mid);
+  display: flex; flex-direction: column;
+}
+.cs-contact-eyebrow {
+  font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--fg4);
+  margin-bottom: 10px;
+}
+.cs-contact-title {
+  font-size: 18px; font-weight: 800;
+  color: var(--dark); line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.cs-phone-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--dark); color: #fff;
+  border-radius: var(--r-pill);
+  padding: 12px 20px;
+  font-size: 18px; font-weight: 800;
+  text-decoration: none;
+  transition: opacity 0.15s;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+.cs-phone-btn:hover { opacity: 0.85; }
+.cs-phone-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cs-phone-note { font-size: 12px; color: var(--fg3); line-height: 1.6; margin-top: auto; }
+
+/* ═══════════════════════════════════════════
    CTA SECTION
 ═══════════════════════════════════════════ */
 .cta-outer { padding: 30px 36px; }
@@ -640,25 +792,28 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   overflow: hidden;
 }
 
-/* CTA body — centered column */
+/* CTA body — horizontal row */
 .cta-body {
-  padding: 48px 48px 32px;
+  padding: 44px 48px 36px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
+  justify-content: space-between;
+  gap: 40px;
 }
+.cta-body-left  { flex: 1; min-width: 0; }
+.cta-body-right { flex-shrink: 0; }
 .cta-eyebrow {
-  font-size: 11px; font-weight: 700;
+  font-size: 11px; font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: rgba(215,255,0,0.45);
-  margin-bottom: 10px;
+  color: var(--lime);
+  margin-bottom: 12px;
 }
 .cta-title {
-  font-size: 24px; font-weight: 900;
+  font-size: 26px; font-weight: 900;
   color: #fff; line-height: 1.2;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .cta-sub { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
 
@@ -897,6 +1052,17 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   .comp-savings-val { font-size: 18px; padding: 14px 14px; }
   .comp-savings-label { padding: 14px 12px; }
   .comp-savings-empty { padding: 14px 14px; }
+
+  /* Features */
+  .feat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Client section */
+  .cs-grid { grid-template-columns: 1fr; }
+  .cs-client-name { font-size: 24px; }
+
+  /* CTA horizontal → vertical */
+  .cta-body { flex-direction: column; align-items: flex-start; padding: 32px 24px 28px; }
+  .btn-cta-primary { width: 100%; }
 
   /* Monthly payments cards */
   .mp-cards { grid-template-columns: 1fr; }
