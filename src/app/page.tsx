@@ -12,7 +12,6 @@ export default function OfferPage() {
   return (
     <VatProvider>
       <Header />
-      <div className="nav-sep" />
       <main>
         <Hero />
         <div style={{ background: "#fff" }}>

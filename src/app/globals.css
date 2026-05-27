@@ -315,9 +315,25 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   margin-bottom: 7px;
 }
 
+.comp-hlogo {
+  display: flex; align-items: center; gap: 9px;
+  margin-bottom: 5px;
+}
+
 .comp-hname { font-size: 15px; font-weight: 800; }
 .comp-hcol-el .comp-hname { color: var(--dark); }
 .comp-hcol-cez .comp-hname { color: #9aa5b1; }
+
+.comp-cez-mark {
+  width: 30px; height: 30px;
+  background: #e2001a;
+  color: #fff;
+  font-size: 8px; font-weight: 900;
+  letter-spacing: 0.04em;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
 
 .comp-htar { font-size: 11px; margin-top: 3px; }
 .comp-hcol-el .comp-htar { color: var(--fg3); }
@@ -533,11 +549,12 @@ button { cursor: pointer; font-family: var(--font); border: none; }
    FOOTER
 ═══════════════════════════════════════════ */
 .footer { background: var(--dark); padding: 24px 36px 18px; }
-.footer-inner { max-width: var(--page-w); margin: 0 auto; }
+.footer-inner { max-width: var(--page-w); margin: 0 auto; text-align: center; }
 
 .footer-phone {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 16px;
@@ -555,10 +572,10 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 .footer-phone-hours { font-size: 12px; color: rgba(255,255,255,0.3); }
 
 .footer-row {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: center; align-items: center;
   flex-wrap: wrap; gap: 8px;
 }
-.footer-contact { display: flex; gap: 16px; }
+.footer-contact { display: flex; gap: 16px; justify-content: center; }
 .footer-link    { font-size: 13px; color: rgba(255,255,255,0.38); transition: color 0.15s; }
 .footer-link:hover { color: rgba(255,255,255,0.65); }
 .footer-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 12px 0; }

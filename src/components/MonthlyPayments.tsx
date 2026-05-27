@@ -40,13 +40,23 @@ export function MonthlyPayments() {
         <div className="comp-card">
           <div className="comp-hrow">
             <div className="comp-spacer" />
+
+            {/* Electree column */}
             <div className="comp-hcol comp-hcol-el">
               <div className="comp-el-badge">Naše nabídka</div>
-              <div className="comp-hname">Electree</div>
+              <div className="comp-hlogo">
+                <ElectreeMark />
+                <div className="comp-hname">Electree</div>
+              </div>
               <div className="comp-htar">{OFFER.offer.tariff} · {OFFER.offer.fixYears} roky</div>
             </div>
+
+            {/* ČEZ column */}
             <div className="comp-hcol comp-hcol-cez">
-              <div className="comp-hname">ČEZ</div>
+              <div className="comp-hlogo comp-hlogo-cez">
+                <CezMark />
+                <div className="comp-hname">ČEZ</div>
+              </div>
               <div className="comp-htar">{OFFER.current.tariff}</div>
             </div>
           </div>
@@ -107,6 +117,28 @@ function CellView({ data }: { data: CellData }) {
   if (data.type === "cross") return <CrossIcon />;
   if (data.type === "text") return <span className="comp-feat-text">{data.val}</span>;
   return <span className="comp-dash">—</span>;
+}
+
+function ElectreeMark() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M15 32C14.4477 32 13.9947 31.551 14.0492 31.0014C14.5177 26.2759 18.2759 22.5177 23.0014 22.0492C23.551 21.9947 24 22.4477 24 23L24 25C24 25.5523 23.5489 25.9913 23.0042 26.0823C20.4883 26.5025 18.5025 28.4883 18.0823 31.0042C17.9913 31.5489 17.5523 32 17 32L15 32Z" fill="#0D3D34"/>
+      <path d="M17 32C17.5523 32 18.0053 31.551 17.9508 31.0014C17.4823 26.2759 13.7241 22.5177 8.9986 22.0492C8.44901 21.9947 8 22.4477 8 23L8 25C8 25.5523 8.45108 25.9913 8.99581 26.0823C11.5117 26.5025 13.4975 28.4883 13.9177 31.0042C14.0087 31.5489 14.4477 32 15 32L15 32Z" fill="#0D3D34"/>
+      <rect x="14" y="13" width="13" height="4" rx="1" transform="rotate(-90 14 13)" fill="#0D3D34"/>
+      <rect x="28.7266" y="6.10059" width="13.9999" height="4" rx="1" transform="rotate(135 28.7266 6.10059)" fill="#0D3D34"/>
+      <rect x="6.10156" y="3.27246" width="13.7099" height="4" rx="1" transform="rotate(45 6.10156 3.27246)" fill="#0D3D34"/>
+      <path d="M24 16C19.5817 16 16 12.4183 16 8" stroke="#0D3D34" strokeWidth="4"/>
+      <path d="M23.9688 18H31.0039C31.5562 18 32.0039 17.5523 32.0039 17V15C32.0039 14.4477 31.5562 14 31.0039 14H23.9688V18Z" fill="#0D3D34"/>
+      <path d="M8 16C12.4183 16 16 12.4183 16 8" stroke="#0D3D34" strokeWidth="4"/>
+      <path d="M8.04688 18H1.00391C0.451622 18 0.00390625 17.5523 0.00390625 17V15C0.00390625 14.4477 0.451622 14 1.00391 14H8.04688V18Z" fill="#0D3D34"/>
+    </svg>
+  );
+}
+
+function CezMark() {
+  return (
+    <div className="comp-cez-mark" aria-hidden="true">ČEZ</div>
+  );
 }
 
 function CheckIcon() {
