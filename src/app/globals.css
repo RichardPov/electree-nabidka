@@ -265,7 +265,7 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 .metric-card-hl .mc-label { color: rgba(255,255,255,0.48); }
 .mc-badge {
   display: inline-block;
-  background: var(--soft); color: var(--dark);
+  background: var(--dark); color: var(--lime);
   border-radius: var(--r-sm);
   padding: 3px 10px;
   font-size: 10px; font-weight: 800; margin-top: 10px;
@@ -399,19 +399,18 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 .comp-monthly-savings {
   display: flex; justify-content: space-between; align-items: center;
   padding: 18px 24px;
-  background: var(--soft);
-  border-top: 2px solid var(--lime);
+  background: var(--dark);
 }
 .comp-ms-label {
-  font-size: 13px; font-weight: 600; color: var(--dark);
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5);
 }
 .comp-ms-val {
-  font-size: 22px; font-weight: 900; color: var(--dark);
+  font-size: 22px; font-weight: 900; color: var(--lime);
   letter-spacing: -0.02em;
   display: flex; align-items: baseline; gap: 7px;
 }
 .comp-ms-period {
-  font-size: 12px; font-weight: 600; color: var(--fg3);
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4);
   letter-spacing: 0;
 }
 
