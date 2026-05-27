@@ -10,27 +10,24 @@ export function SavingsMetrics() {
 
   const adj = (n: number) => vat ? n : Math.round(n / (1 + OFFER.vat));
 
-  const cards: { iconId: IconId; value: string; label: string; badge: string; hl: boolean }[] = [
+  const cards: { iconId: IconId; value: string; label: string; badge: string }[] = [
     {
       iconId: "banknote",
       value: `${adj(OFFER.savings.monthly).toLocaleString("cs-CZ")} Kč`,
-      label: "měsíčně méně na zálohách",
-      badge: `−${OFFER.savings.pct} % měsíčně`,
-      hl: false,
+      label: "ušetříte měsíčně na zálohách",
+      badge: `−${adj(OFFER.savings.monthly).toLocaleString("cs-CZ")} Kč/měsíc`,
     },
     {
       iconId: "barchart",
       value: `${adj(OFFER.savings.annual).toLocaleString("cs-CZ")} Kč`,
-      label: "ušetříte za rok",
+      label: "ušetříte za rok na elektřině",
       badge: "roční úspora",
-      hl: false,
     },
     {
       iconId: "award",
       value: `${adj(OFFER.savings.threeYear).toLocaleString("cs-CZ")} Kč`,
-      label: `celková úspora za ${OFFER.offer.fixYears} roky fixace`,
+      label: "za celou dobu fixace",
       badge: "za celou fixaci",
-      hl: true,
     },
   ];
 
@@ -40,7 +37,7 @@ export function SavingsMetrics() {
         <h2 className="sec-title">Vaše úspora s Electree</h2>
         <div className="metrics-grid">
           {cards.map((c, i) => (
-            <div key={i} className={`metric-card${c.hl ? " metric-card-hl" : ""}`}>
+            <div key={i} className="metric-card">
               <div className="mc-icon" aria-hidden="true">
                 <MetricIcon id={c.iconId} />
               </div>

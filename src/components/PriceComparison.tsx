@@ -14,6 +14,13 @@ function annual(pricePerMWh: number, monthlyFee: number, vat: boolean) {
 export function PriceComparison() {
   const { vat } = useVat();
 
+  const annualSavings = vat
+    ? Math.round(OFFER.savings.commodityAnnual * (1 + OFFER.vat))
+    : OFFER.savings.commodityAnnual;
+
+  const elTooltip = `${fmt(OFFER.offer.pricePerMWhExVat, vat)} Kč/MWh × ${OFFER.client.consumptionMWh} + ${fmt(OFFER.offer.monthlyFeeExVat, vat)} Kč × 12 měs`;
+  const czTooltip = `${fmt(OFFER.current.pricePerMWhExVat, vat)} Kč/MWh × ${OFFER.client.consumptionMWh} + ${fmt(OFFER.current.monthlyFeeExVat, vat)} Kč × 12 měs`;
+
   return (
     <section className="body-section" style={{ paddingTop: 0 }}>
       <div className="body-inner">
@@ -33,18 +40,58 @@ export function PriceComparison() {
               Electree
               <span className="pc-badge">Naše nabídka</span>
             </div>
-            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{fmt(OFFER.offer.pricePerMWhExVat, vat)} Kč/MWh</span></div>
-            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{fmt(OFFER.offer.monthlyFeeExVat, vat)} Kč/měs</span></div>
-            <div className="pc-row"><span className="pc-label">Roční náklady (komodita)</span><span className="pc-val">{annual(OFFER.offer.pricePerMWhExVat, OFFER.offer.monthlyFeeExVat, vat)} Kč</span></div>
+            <div className="pc-row">
+              <span className="pc-label">Spotřeba elektřiny</span>
+              <span className="pc-val">{OFFER.client.consumptionMWh} MWh/rok</span>
+            </div>
+            <div className="pc-row">
+              <span className="pc-label">Cena elektřiny</span>
+              <span className="pc-val">{fmt(OFFER.offer.pricePerMWhExVat, vat)} Kč/MWh</span>
+            </div>
+            <div className="pc-row">
+              <span className="pc-label">Stálý plat</span>
+              <span className="pc-val">{fmt(OFFER.offer.monthlyFeeExVat, vat)} Kč/měs</span>
+            </div>
+            <div className="pc-row">
+              <span className="pc-label pc-label-tip">
+                Roční náklady (komodita)
+                <span className="pc-tip-icon" aria-hidden="true">?</span>
+                <span className="pc-tip-content">{elTooltip}</span>
+              </span>
+              <span className="pc-val">{annual(OFFER.offer.pricePerMWhExVat, OFFER.offer.monthlyFeeExVat, vat)} Kč</span>
+            </div>
           </div>
 
           {/* ČEZ second */}
           <div className="price-card">
             <div className="pc-sup">ČEZ — současná cena</div>
-            <div className="pc-row"><span className="pc-label">Cena elektřiny</span><span className="pc-val">{fmt(OFFER.current.pricePerMWhExVat, vat)} Kč/MWh</span></div>
-            <div className="pc-row"><span className="pc-label">Stálý plat</span><span className="pc-val">{fmt(OFFER.current.monthlyFeeExVat, vat)} Kč/měs</span></div>
-            <div className="pc-row"><span className="pc-label">Roční náklady (komodita)</span><span className="pc-val">{annual(OFFER.current.pricePerMWhExVat, OFFER.current.monthlyFeeExVat, vat)} Kč</span></div>
+            <div className="pc-row">
+              <span className="pc-label">Spotřeba elektřiny</span>
+              <span className="pc-val">{OFFER.client.consumptionMWh} MWh/rok</span>
+            </div>
+            <div className="pc-row">
+              <span className="pc-label">Cena elektřiny</span>
+              <span className="pc-val">{fmt(OFFER.current.pricePerMWhExVat, vat)} Kč/MWh</span>
+            </div>
+            <div className="pc-row">
+              <span className="pc-label">Stálý plat</span>
+              <span className="pc-val">{fmt(OFFER.current.monthlyFeeExVat, vat)} Kč/měs</span>
+            </div>
+            <div className="pc-row">
+              <span className="pc-label pc-label-tip">
+                Roční náklady (komodita)
+                <span className="pc-tip-icon" aria-hidden="true">?</span>
+                <span className="pc-tip-content">{czTooltip}</span>
+              </span>
+              <span className="pc-val">{annual(OFFER.current.pricePerMWhExVat, OFFER.current.monthlyFeeExVat, vat)} Kč</span>
+            </div>
           </div>
+        </div>
+
+        {/* Annual savings summary */}
+        <div className="price-annual-savings">
+          <span>Vaše roční úspora za elektřinu</span>
+          <span className="price-annual-savings-val">{annualSavings.toLocaleString("cs-CZ")} Kč</span>
         </div>
 
         <p className="dph-note">
