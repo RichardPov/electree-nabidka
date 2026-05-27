@@ -3,7 +3,7 @@ import { OFFER } from "@/lib/offer-data";
 const items = [
   {
     icon: "renewable",
-    title: "100 % obnovitelné zdroje",
+    title: "100 % obnovitelné",
     sub: "certifikát původu energie",
   },
   {
