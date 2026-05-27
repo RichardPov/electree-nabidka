@@ -53,7 +53,8 @@ export function MonthlyPayments() {
 
             {/* ČEZ column */}
             <div className="comp-hcol comp-hcol-cez">
-              <div className="comp-hlogo comp-hlogo-cez">
+              <div className="comp-cez-badge">Vaše aktuální nabídka</div>
+              <div className="comp-hlogo">
                 <CezMark />
                 <div className="comp-hname">ČEZ</div>
               </div>

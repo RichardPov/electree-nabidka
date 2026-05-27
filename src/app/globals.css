@@ -315,6 +315,15 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   margin-bottom: 7px;
 }
 
+.comp-cez-badge {
+  display: inline-block;
+  background: #eef0f3; color: #9aa5b1;
+  border-radius: 5px; padding: 2px 8px;
+  font-size: 9px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 7px;
+}
+
 .comp-hlogo {
   display: flex; align-items: center; gap: 9px;
   margin-bottom: 5px;
