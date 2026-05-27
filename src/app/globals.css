@@ -64,7 +64,21 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   border-radius: 10px;
   padding: 10px 18px 10px 10px;
 }
-.hdr-actions { display: flex; align-items: center; gap: 21px; }
+.hdr-actions { display: flex; align-items: center; gap: 14px; }
+
+.pdf-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent;
+  color: var(--dark);
+  border: 1.5px solid var(--mid);
+  border-radius: var(--r-pill);
+  padding: 6px 14px;
+  font-size: 12px; font-weight: 700; font-family: var(--font);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.pdf-btn:hover { border-color: var(--dark); background: var(--soft); }
 
 .nav-sep { height: 14px; background: #fff; }
 
@@ -1115,4 +1129,75 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   font-size: 12px; color: var(--fg3);
 }
 .v2-footer-link { color: var(--fg3); transition: color 0.15s; }
+
+/* ═══════════════════════════════════════════
+   PRINT / PDF EXPORT
+═══════════════════════════════════════════ */
+@media print {
+  /* Force all background colors and images */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* Hide interactive chrome */
+  .hdr,
+  .lime-bar,
+  .pdf-btn,
+  .hero-ctas,
+  .cta-outer,
+  .footer,
+  .modal-overlay,
+  .dph-toggle,
+  .validity-badge {
+    display: none !important;
+  }
+
+  /* Print-only header */
+  body::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: #D7FF00;
+  }
+
+  /* Remove sticky positioning */
+  .hdr { position: static; }
+
+  /* Body */
+  body { background: #fff; }
+
+  /* Preserve section padding on print */
+  .body-section { padding: 24px 32px; }
+
+  /* Hero — keep background */
+  .hero-wrap { padding: 40px 32px; break-inside: avoid; }
+
+  /* Cards — avoid breaking across pages */
+  .mp-cards,
+  .mp-el-card,
+  .mp-cez-card,
+  .metric-card,
+  .price-card,
+  .comp-card,
+  .cta-card {
+    break-inside: avoid;
+  }
+
+  /* Don't break metrics grid */
+  .metrics-grid { break-inside: avoid; }
+
+  /* Adjust font sizes slightly for print */
+  .hero-amount { font-size: 60px; }
+  .mp-price-el, .mp-price-cez { font-size: 32px; }
+
+  /* Make links non-underlined in print */
+  a { text-decoration: none; }
+}
 .v2-footer-link:hover { color: var(--dark); }
