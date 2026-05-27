@@ -1,11 +1,13 @@
 import { OFFER } from "@/lib/offer-data";
 import { V2Actions } from "@/components/V2Actions";
 
-const WHY_ITEMS = [
-  { title: "Vše online",             sub: "Smlouva, platby i správa účtu přes mobil nebo web" },
-  { title: "Žádné skryté poplatky",  sub: "Transparentní ceník, žádná překvapení na faktuře" },
-  { title: "Bezstarostný přechod",   sub: "Vše za vás zařídíme, žádné přerušení dodávky" },
-  { title: "Jistota fixní ceny",     sub: `${OFFER.offer.fixYears} roky stabilní cena bez ohledu na trh` },
+type IconId = "online" | "lock" | "switch" | "shield";
+
+const WHY_ITEMS: { title: string; sub: string; icon: IconId }[] = [
+  { icon: "online",  title: "Vše online",             sub: "Smlouva, platby i správa účtu přes mobil nebo web" },
+  { icon: "lock",    title: "Žádné skryté poplatky",  sub: "Transparentní ceník, žádná překvapení na faktuře" },
+  { icon: "switch",  title: "Bezstarostný přechod",   sub: "Vše za vás zařídíme, žádné přerušení dodávky" },
+  { icon: "shield",  title: "Jistota fixní ceny",     sub: `${OFFER.offer.fixYears} roky stabilní cena bez ohledu na trh` },
 ];
 
 const priceDelta = OFFER.current.pricePerMWhExVat - OFFER.offer.pricePerMWhExVat;
@@ -17,9 +19,10 @@ export default function OfferPageV2() {
       <header className="v2-hdr">
         <div className="v2-hdr-inner">
           <V2Logo />
-          <span className="v2-validity">
-            Nabídka platná do <strong>{OFFER.validity}</strong>
-          </span>
+          <div className="validity-badge" aria-label={`Platnost nabídky do ${OFFER.validity}`}>
+            <span className="validity-dot" aria-hidden="true" />
+            Platnost do {OFFER.validity}
+          </div>
         </div>
       </header>
 
@@ -123,7 +126,9 @@ export default function OfferPageV2() {
             <div className="v2-why">
               {WHY_ITEMS.map((item, i) => (
                 <div className="v2-why-item" key={i}>
-                  <div className="v2-why-icon" aria-hidden="true" />
+                  <div className="v2-why-icon" aria-hidden="true">
+                    <V2Icon id={item.icon} />
+                  </div>
                   <div>
                     <div className="v2-why-title">{item.title}</div>
                     <div className="v2-why-sub">{item.sub}</div>
@@ -158,6 +163,47 @@ export default function OfferPageV2() {
       </footer>
     </div>
   );
+}
+
+function V2Icon({ id }: { id: IconId }) {
+  const p = {
+    width: 17, height: 17, viewBox: "0 0 24 24",
+    fill: "none", stroke: "currentColor",
+    strokeWidth: 2.4,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+  switch (id) {
+    case "online":
+      return (
+        <svg {...p}>
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <path d="M8 21h8M12 17v4"/>
+        </svg>
+      );
+    case "lock":
+      return (
+        <svg {...p}>
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      );
+    case "switch":
+      return (
+        <svg {...p}>
+          <path d="M17 1l4 4-4 4"/>
+          <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <path d="M7 23l-4-4 4-4"/>
+          <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      );
+    case "shield":
+      return (
+        <svg {...p}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      );
+  }
 }
 
 function V2Logo() {
