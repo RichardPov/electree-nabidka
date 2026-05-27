@@ -3,212 +3,156 @@
 import { useEffect, useRef, useState } from "react";
 import { OFFER } from "@/lib/offer-data";
 
-const CEZ_H = 160;
-const ELECTREE_H = Math.round(
-  (OFFER.offer.monthlyPaymentWithVat / OFFER.current.monthlyPaymentWithVat) * CEZ_H
-);
-const SAVINGS_H = CEZ_H - ELECTREE_H;
+const R = 76;
+const SW = 15;
+const CIRC = 2 * Math.PI * R; // ≈ 477.5
+const ARC = (OFFER.savings.pct / 100) * CIRC; // 24% arc
+const SIZE = (R + SW + 2) * 2;
+const CENTER = SIZE / 2;
 
 export function SavingsChart() {
-  const ref = useRef<SVGSVGElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [ready, setReady] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          setReady(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const svgH = CEZ_H + 70;
-  const barW = 68;
-  const gap = 44;
-  const svgW = barW * 2 + gap + 48;
-
-  const yBase = CEZ_H + 8;
-  const cezX = 0;
-  const elX = barW + gap;
-
   return (
-    <div className="flex flex-col items-center select-none">
-      <svg
-        ref={ref}
-        width={svgW}
-        height={svgH + 52}
-        viewBox={`0 0 ${svgW} ${svgH + 52}`}
-        aria-label="Porovnání měsíčních záloh: ČEZ 1 890 Kč vs Electree 1 440 Kč"
-        role="img"
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center gap-4"
+      role="img"
+      aria-label={`Úspora ${OFFER.savings.pct} % — záloha klesá z ${OFFER.current.monthlyPaymentWithVat} Kč na ${OFFER.offer.monthlyPaymentWithVat} Kč měsíčně`}
+    >
+      {/* Donut ring */}
+      <div className="relative" style={{ width: SIZE, height: SIZE }}>
+        <svg
+          width={SIZE}
+          height={SIZE}
+          viewBox={`0 0 ${SIZE} ${SIZE}`}
+          style={{ transform: "rotate(-90deg)" }}
+          aria-hidden="true"
+        >
+          {/* Track — full circle, very subtle */}
+          <circle
+            cx={CENTER}
+            cy={CENTER}
+            r={R}
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            strokeWidth={SW}
+          />
+          {/* Paid portion — 76%, dim */}
+          <circle
+            cx={CENTER}
+            cy={CENTER}
+            r={R}
+            fill="none"
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth={SW}
+            strokeLinecap="butt"
+            strokeDasharray={CIRC}
+            strokeDashoffset={ready ? ARC : CIRC}
+            style={{
+              transition: ready
+                ? "stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s"
+                : "none",
+            }}
+          />
+          {/* Savings arc — 24%, lime */}
+          <circle
+            cx={CENTER}
+            cy={CENTER}
+            r={R}
+            fill="none"
+            stroke="#D7FF00"
+            strokeWidth={SW}
+            strokeLinecap="round"
+            strokeDasharray={CIRC}
+            strokeDashoffset={ready ? CIRC - ARC : CIRC}
+            style={{
+              transition: ready
+                ? "stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s"
+                : "none",
+            }}
+          />
+        </svg>
+
+        {/* Center overlay — stays upright */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span
+            className="text-[42px] font-extrabold leading-none tracking-tight"
+            style={{ color: "#D7FF00", letterSpacing: "-0.03em" }}
+          >
+            −{OFFER.savings.pct}%
+          </span>
+          <span
+            className="text-[11px] mt-1.5 font-medium tracking-wide"
+            style={{ color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}
+          >
+            úspora
+          </span>
+        </div>
+      </div>
+
+      {/* Price comparison strip below ring */}
+      <div
+        className="flex items-center gap-4 px-4 py-3 rounded-2xl"
+        style={{
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.07)",
+        }}
       >
-        {/* Savings zone label (between the tops) */}
-        {visible && (
-          <>
-            {/* Bracket line from CEZ top to Electree top level */}
-            <line
-              x1={cezX + barW + 5}
-              y1={8}
-              x2={cezX + barW + 5}
-              y2={8 + SAVINGS_H}
-              stroke="rgba(215,255,0,0.5)"
-              strokeWidth="1.5"
-              strokeDasharray="3 3"
-            />
-            {/* Savings label */}
-            <text
-              x={cezX + barW + 12}
-              y={8 + SAVINGS_H / 2 + 5}
-              fill="#D7FF00"
-              fontSize="11"
-              fontWeight="700"
-              fontFamily="Plus Jakarta Sans, sans-serif"
-            >
-              −{OFFER.savings.monthly.toLocaleString("cs-CZ")} Kč
-            </text>
-            <text
-              x={cezX + barW + 12}
-              y={8 + SAVINGS_H / 2 + 20}
-              fill="rgba(215,255,0,0.6)"
-              fontSize="9"
-              fontFamily="Plus Jakarta Sans, sans-serif"
-            >
-              /měsíc
-            </text>
-          </>
-        )}
+        {/* CEZ */}
+        <div className="text-center">
+          <div className="text-[10px] font-semibold mb-1" style={{ color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            ČEZ
+          </div>
+          <div
+            className="text-[15px] font-semibold line-through"
+            style={{ color: "rgba(255,255,255,0.3)" }}
+          >
+            {OFFER.current.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč
+          </div>
+        </div>
 
-        {/* CEZ bar */}
-        <rect
-          x={cezX}
-          y={8}
-          width={barW}
-          height={CEZ_H}
-          rx="8"
-          fill="rgba(255,255,255,0.1)"
-          className={visible ? "bar-animate bar-cez" : ""}
-          style={{ transformOrigin: `${cezX + barW / 2}px ${8 + CEZ_H}px` }}
-        />
-        {/* Electree bar */}
-        <rect
-          x={elX}
-          y={8 + SAVINGS_H}
-          width={barW}
-          height={ELECTREE_H}
-          rx="8"
-          fill="#D7FF00"
-          className={visible ? "bar-animate bar-electree" : ""}
-          style={{ transformOrigin: `${elX + barW / 2}px ${8 + CEZ_H}px` }}
-        />
+        {/* Arrow */}
+        <svg width="20" height="10" viewBox="0 0 20 10" fill="none" aria-hidden="true">
+          <path
+            d="M0 5h16M12 1l4 4-4 4"
+            stroke="rgba(215,255,0,0.45)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
 
-        {/* Baseline */}
-        <line
-          x1={cezX}
-          y1={yBase}
-          x2={elX + barW}
-          y2={yBase}
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth="1"
-        />
+        {/* Electree */}
+        <div className="text-center">
+          <div className="text-[10px] font-semibold mb-1" style={{ color: "rgba(215,255,0,0.5)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            Electree
+          </div>
+          <div className="text-[15px] font-bold" style={{ color: "#D7FF00" }}>
+            {OFFER.offer.monthlyPaymentWithVat.toLocaleString("cs-CZ")} Kč
+          </div>
+        </div>
+      </div>
 
-        {/* CEZ price label */}
-        <text
-          x={cezX + barW / 2}
-          y={4}
-          textAnchor="middle"
-          fill="rgba(255,255,255,0.55)"
-          fontSize="11"
-          fontWeight="600"
-          fontFamily="Plus Jakarta Sans, sans-serif"
-        >
-          1 890 Kč
-        </text>
-
-        {/* Electree price label */}
-        <text
-          x={elX + barW / 2}
-          y={8 + SAVINGS_H - 6}
-          textAnchor="middle"
-          fill="#D7FF00"
-          fontSize="11"
-          fontWeight="700"
-          fontFamily="Plus Jakarta Sans, sans-serif"
-        >
-          1 440 Kč
-        </text>
-
-        {/* CEZ label */}
-        <text
-          x={cezX + barW / 2}
-          y={yBase + 18}
-          textAnchor="middle"
-          fill="rgba(255,255,255,0.4)"
-          fontSize="11"
-          fontFamily="Plus Jakarta Sans, sans-serif"
-        >
-          ČEZ
-        </text>
-        <text
-          x={cezX + barW / 2}
-          y={yBase + 30}
-          textAnchor="middle"
-          fill="rgba(255,255,255,0.25)"
-          fontSize="9"
-          fontFamily="Plus Jakarta Sans, sans-serif"
-        >
-          nyní platíte
-        </text>
-
-        {/* Electree label */}
-        <text
-          x={elX + barW / 2}
-          y={yBase + 18}
-          textAnchor="middle"
-          fill="#D7FF00"
-          fontSize="11"
-          fontWeight="600"
-          fontFamily="Plus Jakarta Sans, sans-serif"
-        >
-          Electree
-        </text>
-        <text
-          x={elX + barW / 2}
-          y={yBase + 30}
-          textAnchor="middle"
-          fill="rgba(215,255,0,0.5)"
-          fontSize="9"
-          fontFamily="Plus Jakarta Sans, sans-serif"
-        >
-          s námi
-        </text>
-
-        {/* Percent badge */}
-        <rect
-          x={elX + barW / 2 - 22}
-          y={yBase + 36}
-          width={44}
-          height={16}
-          rx="8"
-          fill="rgba(215,255,0,0.12)"
-        />
-        <text
-          x={elX + barW / 2}
-          y={yBase + 47.5}
-          textAnchor="middle"
-          fill="#D7FF00"
-          fontSize="10"
-          fontWeight="700"
-          fontFamily="Plus Jakarta Sans, sans-serif"
-        >
-          −{OFFER.savings.pct} %
-        </text>
-      </svg>
-      <p className="text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
-        měsíční záloha s DPH · 4 MWh/rok
+      <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.2)" }}>
+        záloha s DPH · {OFFER.client.consumptionMWh} MWh/rok
       </p>
     </div>
   );

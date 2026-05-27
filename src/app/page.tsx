@@ -14,6 +14,10 @@ export default function OfferPage() {
         <Hero />
         <SavingsMetrics />
         <PriceComparison />
+
+        {/* Divider between alternating sections */}
+        <div style={{ borderTop: "1px solid #D1DFD8" }} />
+
         <Benefits />
         <CTASection />
       </main>
