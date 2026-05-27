@@ -28,7 +28,7 @@ export function Header() {
                 onClick={() => setVat(true)}
                 aria-pressed={vat}
               >
-                S DPH 21%
+                S DPH 21&nbsp;%
               </button>
             </div>
 
