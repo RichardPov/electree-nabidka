@@ -12,6 +12,12 @@ export function KeyMetrics() {
     ? Math.round(OFFER.offer.pricePerMWhExVat * (1 + OFFER.vat))
     : OFFER.offer.pricePerMWhExVat;
 
+  const currentPricePerMWh = vat
+    ? Math.round(OFFER.current.pricePerMWhExVat * (1 + OFFER.vat))
+    : OFFER.current.pricePerMWhExVat;
+
+  const priceDiff = currentPricePerMWh - pricePerMWh;
+
   const annualSavings = vat
     ? OFFER.savings.annual
     : Math.round(OFFER.savings.annual / (1 + OFFER.vat));
@@ -35,7 +41,7 @@ export function KeyMetrics() {
             <div className="km-value">
               {fmt(pricePerMWh)}&thinsp;<span className="km-unit">Kč</span>
             </div>
-            <div className="km-sub">Fixovaná po celých {fixMonths} měsíců</div>
+            <div className="km-tag km-tag-green">−{fmt(priceDiff)}&thinsp;Kč/MWh vs ČEZ</div>
           </div>
 
           <div className="km-card">
@@ -43,7 +49,7 @@ export function KeyMetrics() {
             <div className="km-value">
               {fmt(annualSavings)}&thinsp;<span className="km-unit">Kč</span>
             </div>
-            <div className="km-sub">Oproti {OFFER.current.supplier}</div>
+            <div className="km-tag km-tag-green">Oproti {OFFER.current.supplier}</div>
           </div>
 
           <div className="km-card">
@@ -51,7 +57,7 @@ export function KeyMetrics() {
             <div className="km-value">
               {fmt(totalSavings)}&thinsp;<span className="km-unit">Kč</span>
             </div>
-            <div className="km-sub">Za {fixMonths} měsíců fixace</div>
+            <div className="km-tag km-tag-green">Za {fixMonths} měsíců fixace</div>
           </div>
 
           <div className="km-card km-card-dark">
@@ -60,6 +66,7 @@ export function KeyMetrics() {
             <div className="km-value km-value-lime">
               {fmt(monthlyPayment)}&thinsp;<span className="km-unit">Kč</span>
             </div>
+            <div className="km-tag km-tag-lime">Fixovaná po {fixMonths} měsíců</div>
           </div>
         </div>
       </div>
