@@ -18,19 +18,15 @@ const items = [
 
 export function Benefits() {
   return (
-    <section className="body-section" style={{ paddingTop: 0 }}>
+    <section className="body-section" style={{ paddingTop: 12, paddingBottom: 12 }}>
       <div className="body-inner">
-        <h2 className="sec-title">Proč Electree?</h2>
         <div className="benefits-grid">
           {items.map((b, i) => (
             <div key={i} className="ben-item">
               <div className="ben-icon" aria-hidden="true">
                 <BenIcon name={b.icon} />
               </div>
-              <div>
-                <div className="ben-title">{b.title}</div>
-                <div className="ben-text">{b.desc}</div>
-              </div>
+              <div className="ben-title">{b.title}</div>
             </div>
           ))}
         </div>
