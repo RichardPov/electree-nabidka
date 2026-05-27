@@ -1,10 +1,9 @@
 import { VatProvider }         from "@/lib/vat-context";
 import { Header }              from "@/components/Header";
 import { Hero }                from "@/components/Hero";
-import { SavingsMetrics }      from "@/components/SavingsMetrics";
+import { KeyMetrics }          from "@/components/KeyMetrics";
 import { PaymentBreakdown }    from "@/components/PaymentBreakdown";
 import { Features }            from "@/components/Features";
-import { MonthlyPayments }     from "@/components/MonthlyPayments";
 import { PriceComparison }     from "@/components/PriceComparison";
 import { Benefits }            from "@/components/Benefits";
 import { ClientSection }       from "@/components/ClientSection";
@@ -18,10 +17,9 @@ export default function OfferPage() {
       <main>
         <Hero />
         <div style={{ background: "#fff" }}>
-          <SavingsMetrics />
+          <KeyMetrics />
           <PaymentBreakdown />
           <Features />
-          <MonthlyPayments />
           <PriceComparison />
           <Benefits />
           <ClientSection />

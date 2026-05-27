@@ -268,6 +268,49 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 .hero-disclaimer { font-size: 12px; color: rgba(255,255,255,0.26); line-height: 1.7; }
 
 /* ═══════════════════════════════════════════
+   KEY METRICS (4-card row)
+═══════════════════════════════════════════ */
+.km-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.km-card {
+  background: var(--soft);
+  border-radius: var(--r-md);
+  padding: 20px 22px 22px;
+  border: 1px solid var(--mid);
+  position: relative;
+}
+.km-card-dark {
+  background: var(--dark);
+  border-color: var(--dark);
+}
+.km-badge-key {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--lime); color: var(--dark);
+  border-radius: var(--r-pill);
+  padding: 2px 9px;
+  font-size: 9px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.km-eyebrow {
+  font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--fg4);
+  margin-bottom: 8px;
+}
+.km-eyebrow-dark { color: rgba(255,255,255,0.35); }
+.km-value {
+  font-size: 30px; font-weight: 900;
+  color: var(--dark); letter-spacing: -0.03em;
+  line-height: 1.1; margin-bottom: 8px;
+}
+.km-value-lime { color: var(--lime); }
+.km-unit { font-size: 16px; font-weight: 700; letter-spacing: 0; }
+.km-sub  { font-size: 12px; color: var(--fg3); line-height: 1.4; }
+
+/* ═══════════════════════════════════════════
    BODY WRAPPER
 ═══════════════════════════════════════════ */
 .body-wrap { display: flex; flex-direction: column; gap: 0; }
@@ -1066,6 +1109,10 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   .comp-savings-val { font-size: 18px; padding: 14px 14px; }
   .comp-savings-label { padding: 14px 12px; }
   .comp-savings-empty { padding: 14px 14px; }
+
+  /* Key metrics */
+  .km-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .km-value { font-size: 24px; }
 
   /* Features */
   .feat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
