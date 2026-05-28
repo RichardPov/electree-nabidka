@@ -5,6 +5,7 @@ import { KeyMetrics }          from "@/components/KeyMetrics";
 import { PaymentBreakdown }    from "@/components/PaymentBreakdown";
 import { Features }            from "@/components/Features";
 import { SupplierComparison }  from "@/components/SupplierComparison";
+import { PriceComparison }     from "@/components/PriceComparison";
 import { ClientSection }       from "@/components/ClientSection";
 import { CTASection }          from "@/components/CTASection";
 import { Footer }              from "@/components/Footer";
@@ -20,6 +21,7 @@ export default function OfferPage() {
           <SupplierComparison />
           <PaymentBreakdown />
           <Features />
+          <PriceComparison />
           <ClientSection />
         </div>
         <CTASection />
