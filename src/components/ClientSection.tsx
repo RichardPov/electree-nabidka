@@ -32,7 +32,7 @@ export function ClientSection() {
           <div className="cs-contact-card">
             <div className="cs-contact-eyebrow">Potřebujete poradit?</div>
             <p className="cs-contact-title">
-              Zavolejte nám, rádi vám pomůžeme s výběrem tarifu.
+              V případě jakýchkoliv dotazů nás neváhejte kontaktovat.
             </p>
             <a href={`tel:${OFFER.phone.replace(/\s/g, "")}`} className="cs-phone-btn">
               <div className="cs-phone-icon">
@@ -44,7 +44,7 @@ export function ClientSection() {
               {OFFER.phone}
             </a>
             <p className="cs-phone-note">
-              Linka péče Electree · Po–Ne 8–20 h · zdarma. Pomůžeme s výběrem tarifu i s převodem od stávajícího dodavatele.
+              Provozní doba infolinky: +420 544 525 222<br />9–17 h (v pracovní dny)
             </p>
           </div>
         </div>
