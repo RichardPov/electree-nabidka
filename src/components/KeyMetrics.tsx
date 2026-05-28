@@ -50,7 +50,7 @@ export function KeyMetrics() {
           </div>
 
           <div className="km-card">
-            <div className="km-eyebrow">Ušetříte za rok</div>
+            <div className="km-eyebrow">Ušetříte za rok na elektřině</div>
             <div className="km-value">
               {fmt(annualSavings)}&thinsp;<span className="km-unit">Kč</span>
             </div>

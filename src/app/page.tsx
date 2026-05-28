@@ -4,7 +4,7 @@ import { Hero }                from "@/components/Hero";
 import { KeyMetrics }          from "@/components/KeyMetrics";
 import { PaymentBreakdown }    from "@/components/PaymentBreakdown";
 import { Features }            from "@/components/Features";
-import { PriceComparison }     from "@/components/PriceComparison";
+import { SupplierComparison }  from "@/components/SupplierComparison";
 import { ClientSection }       from "@/components/ClientSection";
 import { CTASection }          from "@/components/CTASection";
 import { Footer }              from "@/components/Footer";
@@ -17,9 +17,9 @@ export default function OfferPage() {
         <Hero />
         <div style={{ background: "#fff" }}>
           <KeyMetrics />
+          <SupplierComparison />
           <PaymentBreakdown />
           <Features />
-          <PriceComparison />
           <ClientSection />
         </div>
         <CTASection />
