@@ -8,12 +8,12 @@ const items = [
   },
   {
     icon: "file",
-    title: "Žádné zbytečné papírování",
+    title: "Žádné papírování",
     sub: "Jednoduše online",
   },
   {
     icon: "lock",
-    title: `Fixace ceny na ${OFFER.offer.fixYears * 12} měsíců`,
+    title: `Fixace ceny ${OFFER.offer.fixYears * 12} měsíců`,
     sub: "Jistota stabilní ceny",
   },
   {
