@@ -41,12 +41,12 @@ export function KeyMetrics() {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
-            Elektřina {OFFER.client.productName}
+            Elektřina: {OFFER.client.productName}
           </span>
           <span className="km-info-group">
-            <span className="km-info-item">Spotřeba {OFFER.client.consumptionMWh.toLocaleString("cs-CZ")}&thinsp;MWh/rok</span>
+            <span className="km-info-item">Spotřeba: {OFFER.client.consumptionMWh.toLocaleString("cs-CZ")}&thinsp;MWh/rok</span>
             <span className="km-info-dot" aria-hidden="true" />
-            <span className="km-info-item">Dis. Sazba {OFFER.client.distributionRate}</span>
+            <span className="km-info-item">Dis. Sazba: {OFFER.client.distributionRate}</span>
           </span>
         </div>
         <div className="km-grid">
