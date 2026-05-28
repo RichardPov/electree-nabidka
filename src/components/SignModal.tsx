@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 interface Props { isOpen: boolean; onClose: () => void; }
 
@@ -11,11 +11,8 @@ const DOCS = [
 ];
 
 export function SignModal({ isOpen, onClose }: Props) {
-  const [agreed, setAgreed] = useState(false);
-
   useEffect(() => {
     if (!isOpen) return;
-    setAgreed(false);
     const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", fn);
     return () => document.removeEventListener("keydown", fn);
@@ -59,20 +56,20 @@ export function SignModal({ isOpen, onClose }: Props) {
           ))}
         </div>
 
-        <label className="modal-consent">
-          <input
-            type="checkbox"
-            className="modal-consent-check"
-            checked={agreed}
-            onChange={e => setAgreed(e.target.checked)}
-          />
+        <div className="modal-consent-static">
+          <div className="modal-consent-lock" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
           <span className="modal-consent-text">
             Potvrzuji, že moje osobní údaje a adresa odběrného místa jsou správné a souhlasím s jejich zpracováním pro účely uzavření smlouvy.
           </span>
-        </label>
+        </div>
 
         <div className="modal-footer">
-          <button className="btn-modal-primary" onClick={onClose} disabled={!agreed}>
+          <button className="btn-modal-primary" onClick={onClose}>
             Podepsat
           </button>
           <button className="btn-modal-back" onClick={onClose}>Zpět</button>
