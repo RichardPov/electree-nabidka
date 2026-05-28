@@ -89,11 +89,6 @@ export function Header() {
               </button>
             </div>
 
-            <div className="validity-badge" aria-label={`Platnost nabídky do ${OFFER.validity}`}>
-              <span className="validity-dot" aria-hidden="true" />
-              Platnost do {OFFER.validity}
-            </div>
-
             <button className="pdf-btn" onClick={() => setForwardOpen(true)}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
