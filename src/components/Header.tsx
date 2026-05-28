@@ -64,7 +64,6 @@ export function Header() {
 
   return (
     <>
-      <div className="lime-bar" />
       <header className="hdr">
         <div className="hdr-inner">
           <div className="hdr-logo">
