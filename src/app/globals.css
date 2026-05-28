@@ -321,12 +321,17 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   display: flex; align-items: center; justify-content: space-between;
   background: var(--soft); border: 1px solid var(--mid);
   border-radius: var(--r-pill);
-  padding: 8px 20px;
+  padding: 16px 28px;
   margin-bottom: 24px;
 }
 .km-info-item {
   display: inline-flex; align-items: center; gap: 5px;
   font-size: 12px; font-weight: 600; color: var(--teal);
+}
+.km-info-group { display: inline-flex; align-items: center; gap: 8px; }
+.km-info-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--teal); opacity: 0.5; flex-shrink: 0;
 }
 .km-info-sep { display: none; }
 .km-grid {

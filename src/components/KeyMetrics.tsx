@@ -42,10 +42,11 @@ export function KeyMetrics() {
             </svg>
             Elektřina {OFFER.client.productName}
           </span>
-          <span className="km-info-sep" aria-hidden="true" />
-          <span className="km-info-item">Spotřeba {OFFER.client.consumptionMWh.toLocaleString("cs-CZ")}&thinsp;MWh/rok</span>
-          <span className="km-info-sep" aria-hidden="true" />
-          <span className="km-info-item">Tarif {OFFER.client.distributionRate}</span>
+          <span className="km-info-group">
+            <span className="km-info-item">Spotřeba {OFFER.client.consumptionMWh.toLocaleString("cs-CZ")}&thinsp;MWh/rok</span>
+            <span className="km-info-dot" aria-hidden="true" />
+            <span className="km-info-item">Dis. Sazba {OFFER.client.distributionRate}</span>
+          </span>
         </div>
         <div className="km-grid">
           <div className="km-card">
