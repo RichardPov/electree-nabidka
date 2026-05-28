@@ -43,6 +43,7 @@ export function SupplierComparison() {
   return (
     <section className="body-section" style={{ paddingTop: 0 }}>
       <div className="body-inner">
+        <h2 className="sc-headline">Vaše nové měsíční zálohy</h2>
         <div className="sc-grid">
           {/* Electree card */}
           <div className="sc-card sc-card-dark">

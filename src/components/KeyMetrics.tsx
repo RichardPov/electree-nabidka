@@ -65,13 +65,6 @@ export function KeyMetrics() {
             <div className="km-tag km-tag-green">Za {fixMonths} měsíců fixace</div>
           </div>
 
-          <div className="km-card km-card-dark">
-            <div className="km-eyebrow km-eyebrow-dark">Měsíční záloha</div>
-            <div className="km-value km-value-lime">
-              {fmt(monthlyPayment)}&thinsp;<span className="km-unit">Kč</span>
-            </div>
-            <div className="km-tag km-tag-lime">Fixovaná po {fixMonths} měsíců</div>
-          </div>
         </div>
       </div>
     </section>

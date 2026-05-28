@@ -313,7 +313,7 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 ═══════════════════════════════════════════ */
 .km-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 .km-card {
@@ -364,6 +364,7 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 /* ═══════════════════════════════════════════
    SUPPLIER COMPARISON (two cards)
 ═══════════════════════════════════════════ */
+.sc-headline { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 16px; }
 .sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
 .sc-card { border-radius: 16px; padding: 24px 28px; }
 .sc-card-dark  { background: var(--dark); }
