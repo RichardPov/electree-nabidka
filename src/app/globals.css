@@ -319,7 +319,7 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 ═══════════════════════════════════════════ */
 .km-section-title {
   font-size: 22px; font-weight: 800;
-  color: var(--dark); text-align: center;
+  color: var(--dark);
   margin-bottom: 16px;
 }
 .km-info-bar {
