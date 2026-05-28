@@ -6,7 +6,7 @@ import { useVat } from "@/lib/vat-context";
 const chips = [
   "Rychlé vyřízení",
   "Chytrá úspora",
-  "Linka péče 24/7",
+  `Fixace ${OFFER.offer.fixYears * 12} měsíců`,
 ];
 
 export function Hero() {
