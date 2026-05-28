@@ -170,8 +170,14 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 /* ═══════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════ */
-.hero-wrap { background: var(--dark); padding: 80px 36px 72px; }
-.hero-inner { max-width: var(--page-w); margin: 0 auto; }
+.hero-wrap {
+  background: var(--dark);
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  padding: 60px 36px;
+}
+.hero-inner { max-width: var(--page-w); margin: 0 auto; width: 100%; }
 .hero {
   max-width: var(--page-w);
   margin: 0 auto;
@@ -268,6 +274,17 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 .hero-headline-lime {
   color: var(--lime);
 }
+.hero-details {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin-top: 20px;
+}
+.hero-detail-item { font-size: 13px; color: rgba(255,255,255,0.55); }
+.hero-detail-key  { font-weight: 600; color: rgba(255,255,255,0.38); }
+.hero-detail-sep  {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(255,255,255,0.25); flex-shrink: 0;
+}
+
 .hero-pill-chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .hero-pill-chip {
   display: inline-flex; align-items: center;
