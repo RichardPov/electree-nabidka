@@ -242,7 +242,7 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   display: flex; align-items: center; gap: 8px;
   font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.38);
+  color: var(--lime);
   margin-bottom: 24px;
 }
 .hero-eyebrow-dot {
@@ -1087,6 +1087,30 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   box-shadow: 0 24px 64px rgba(0,0,0,0.18);
   animation: mBox 0.22s ease both;
 }
+.modal-box-wide { max-width: 560px; }
+.modal-docs-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 24px;
+}
+.modal-doc-card {
+  display: flex; align-items: center; gap: 11px;
+  background: var(--soft); border: 1px solid var(--mid);
+  border-radius: var(--r-md); padding: 12px 13px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.modal-doc-card:hover { border-color: var(--teal); background: #ddf5ea; }
+.modal-doc-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  background: #fff; border: 1px solid var(--mid);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--teal);
+}
+.modal-doc-info { flex: 1; min-width: 0; }
+.modal-doc-title { font-size: 12.5px; font-weight: 700; color: var(--dark); line-height: 1.3; }
+.modal-doc-sub   { font-size: 11px; color: var(--fg3); margin-top: 2px; }
+.modal-doc-dl    { color: var(--fg4); flex-shrink: 0; transition: color 0.15s; }
+.modal-doc-card:hover .modal-doc-dl { color: var(--teal); }
 @keyframes mBox {
   from { opacity: 0; transform: translateY(14px) scale(0.97) }
   to   { opacity: 1; transform: translateY(0)    scale(1)    }
