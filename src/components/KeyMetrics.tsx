@@ -41,7 +41,7 @@ export function KeyMetrics() {
             <div className="km-value">
               {fmt(pricePerMWh)}&thinsp;<span className="km-unit">Kč</span>
             </div>
-            <div className="km-tag km-tag-lime-stroke">
+            <div className="km-tag km-tag-green">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{marginRight:3,flexShrink:0}}>
                 <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
               </svg>
