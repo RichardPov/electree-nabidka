@@ -4,8 +4,8 @@ import { OFFER } from "@/lib/offer-data";
 import { useVat } from "@/lib/vat-context";
 
 const chips = [
-  "100 % obnovitelné",
-  `Fixace ${OFFER.offer.fixYears * 12} měsíců`,
+  "Rychlé vyřízení",
+  "Chytrá úspora",
   "Linka péče 24/7",
 ];
 
