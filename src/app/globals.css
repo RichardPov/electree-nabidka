@@ -1086,6 +1086,17 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .footer-phone-q { font-size: 13px; color: rgba(255,255,255,0.4); }
+.footer-forward-btn {
+  display: none;
+  align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255,255,255,0.18); border-radius: var(--r-pill);
+  padding: 10px 20px; margin-bottom: 16px;
+  font-size: 13px; font-weight: 700; font-family: var(--font);
+  cursor: pointer; width: 100%; justify-content: center;
+  transition: background 0.15s;
+}
+.footer-forward-btn:hover { background: rgba(255,255,255,0.13); }
 .footer-phone-link {
   display: inline-flex; align-items: center; gap: 7px;
   font-size: 17px; font-weight: 800;
@@ -1301,16 +1312,24 @@ button { cursor: pointer; font-family: var(--font); border: none; }
    RESPONSIVE — TABLET (≤ 768px)
 ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* Header */
-  .hdr { padding: 12px 16px; }
+  /* Header — merges visually into hero */
+  .hdr { padding: 12px 16px; background: var(--dark); border-bottom: none; }
+  .hdr-logo-pill { background: transparent; }
   .hdr-validity { display: none; }
+  .hdr-forward-btn { display: none; }
+  .hdr-pdf-btn { display: none; }
+  .pdf-btn { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+  .pdf-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.35); }
+  .dph-toggle { background: rgba(255,255,255,0.1); }
+  .dph-off { color: rgba(255,255,255,0.5); }
+  .dph-on { background: rgba(255,255,255,0.18); }
 
   /* Client strip */
   .client-strip { padding: 12px 16px; }
   .client-badge  { display: none; }
 
-  /* Hero */
-  .hero-wrap   { padding: 48px 20px 40px; }
+  /* Hero — no top padding gap since header merged */
+  .hero-wrap   { padding: 28px 20px 40px; }
   .hero        { flex-direction: column; gap: 32px; }
   .hero-right  { order: 3; width: 100%; display: flex; justify-content: center; }
   .hero-amount { font-size: 60px; }
@@ -1336,9 +1355,14 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   .comp-savings-label { padding: 14px 12px; }
   .comp-savings-empty { padding: 14px 14px; }
 
-  /* Key metrics */
-  .km-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  /* Key metrics — 3 boxes stacked */
+  .km-grid { grid-template-columns: 1fr; gap: 10px; }
   .km-value { font-size: 24px; }
+
+  /* Supplier comparison — stacked vertically */
+  .sc-grid { grid-template-columns: 1fr; }
+  .sc-mid { flex-direction: row; justify-content: center; gap: 14px; padding: 4px 0; }
+  .sc-mid-sub { margin-top: 0; }
 
   /* Features */
   .feat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1346,9 +1370,11 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   /* Client section */
   .cs-grid { grid-template-columns: 1fr; }
   .cs-client-name { font-size: 24px; }
+  .cs-phone-btn { width: 100%; justify-content: center; }
 
   /* CTA horizontal → vertical */
   .cta-body { flex-direction: column; align-items: flex-start; padding: 32px 24px 28px; }
+  .cta-body-right { width: 100%; }
   .btn-cta-primary { width: 100%; }
 
   /* Monthly payments cards */
@@ -1368,13 +1394,11 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   .btn-cta-primary, .btn-cta-ghost { width: 100%; }
   .cta-disclaimer { padding: 12px 20px 20px; }
 
-  /* Footer phone */
+  /* Footer */
   .footer { padding: 20px 16px 16px; }
   .footer-phone { gap: 10px; }
   .footer-phone-link { font-size: 16px; }
-
-  /* Footer */
-  .footer { padding: 16px; }
+  .footer-forward-btn { display: inline-flex; }
 }
 
 /* ═══════════════════════════════════════════

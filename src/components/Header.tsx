@@ -89,7 +89,7 @@ export function Header() {
               </button>
             </div>
 
-            <button className="pdf-btn" onClick={() => setForwardOpen(true)}>
+            <button className="pdf-btn hdr-forward-btn" onClick={() => setForwardOpen(true)}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <line x1="22" y1="2" x2="11" y2="13"/>
@@ -99,7 +99,7 @@ export function Header() {
             </button>
 
             <button
-              className={`pdf-btn ${exporting ? "pdf-btn-loading" : ""}`}
+              className={`pdf-btn hdr-pdf-btn ${exporting ? "pdf-btn-loading" : ""}`}
               onClick={handlePdf}
               disabled={exporting}
               aria-label="Stáhnout nabídku jako PDF"
