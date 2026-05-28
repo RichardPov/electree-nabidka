@@ -35,6 +35,7 @@ export function KeyMetrics() {
   return (
     <section className="body-section">
       <div className="body-inner">
+        <h2 className="km-section-title">Vaše nabídka od Electree</h2>
         <div className="km-info-bar">
           <span className="km-info-item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

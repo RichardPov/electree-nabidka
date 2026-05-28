@@ -317,6 +317,11 @@ button { cursor: pointer; font-family: var(--font); border: none; }
 /* ═══════════════════════════════════════════
    KEY METRICS (4-card row)
 ═══════════════════════════════════════════ */
+.km-section-title {
+  font-size: 22px; font-weight: 800;
+  color: var(--dark); text-align: center;
+  margin-bottom: 16px;
+}
 .km-info-bar {
   display: flex; align-items: center; justify-content: space-between;
   background: var(--soft); border: 1px solid var(--mid);
