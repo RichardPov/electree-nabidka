@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { OFFER } from "@/lib/offer-data";
 import { useVat } from "@/lib/vat-context";
+import { ForwardModal } from "./ForwardModal";
 
 export function Header() {
   const { vat, setVat } = useVat();
   const [exporting, setExporting] = useState(false);
+  const [forwardOpen, setForwardOpen] = useState(false);
 
   async function handlePdf() {
     if (exporting) return;
@@ -92,6 +94,15 @@ export function Header() {
               Platnost do {OFFER.validity}
             </div>
 
+            <button className="pdf-btn" onClick={() => setForwardOpen(true)}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              Přeposlat nabídku
+            </button>
+
             <button
               className={`pdf-btn ${exporting ? "pdf-btn-loading" : ""}`}
               onClick={handlePdf}
@@ -117,6 +128,7 @@ export function Header() {
           </div>
         </div>
       </header>
+      <ForwardModal isOpen={forwardOpen} onClose={() => setForwardOpen(false)} />
     </>
   );
 }
