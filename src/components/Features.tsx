@@ -2,24 +2,24 @@ import { OFFER } from "@/lib/offer-data";
 
 const items = [
   {
-    icon: "renewable",
-    title: "100 % obnovitelné",
-    sub: "certifikát původu energie",
+    icon: "check",
+    title: "Vše vyřídíme za Vás",
+    sub: "Přechod bez starostí",
   },
   {
-    icon: "card",
-    title: "Online správa smlouvy",
-    sub: "změny tarifu i fakturace",
+    icon: "file",
+    title: "Žádné zbytečné papírování",
+    sub: "Jednoduše online",
   },
   {
     icon: "lock",
-    title: `Fixace ceny ${OFFER.offer.fixYears * 12} měsíců`,
-    sub: "žádné nárazové změny",
+    title: `Fixace ceny na ${OFFER.offer.fixYears * 12} měsíců`,
+    sub: "Jistota stabilní ceny",
   },
   {
     icon: "phone",
-    title: "Zákaznická linka",
-    sub: "7 dní v týdnu, 8–20 h",
+    title: "Zákaznická podpora",
+    sub: "Po–Pá 9–17 hodin",
   },
 ] as const;
 
@@ -54,17 +54,20 @@ function FeatIcon({ name }: { name: string }) {
     strokeLinejoin: "round" as const,
   };
   switch (name) {
-    case "renewable":
+    case "check":
       return (
         <svg {...p}>
-          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="9 12 11.5 14.5 16 9.5"/>
         </svg>
       );
-    case "card":
+    case "file":
       return (
         <svg {...p}>
-          <rect x="2" y="5" width="20" height="14" rx="2"/>
-          <line x1="2" y1="10" x2="22" y2="10"/>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="9" y1="13" x2="15" y2="13"/>
+          <line x1="9" y1="17" x2="13" y2="17"/>
         </svg>
       );
     case "lock":
