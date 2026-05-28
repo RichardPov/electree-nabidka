@@ -33,13 +33,6 @@ export function Hero() {
           </span>
         </h1>
         <p className="hero-hl-sub fu3">Ročně oproti {OFFER.current.supplier}</p>
-        <div className="hero-details fu4">
-          <span className="hero-detail-item"><span className="hero-detail-key">Elektřina:</span> {OFFER.client.productName}</span>
-          <span className="hero-detail-sep" aria-hidden="true" />
-          <span className="hero-detail-item"><span className="hero-detail-key">Spotřeba:</span> {OFFER.client.consumptionMWh.toLocaleString("cs-CZ")}&thinsp;MWh/rok</span>
-          <span className="hero-detail-sep" aria-hidden="true" />
-          <span className="hero-detail-item"><span className="hero-detail-key">Dis. Sazba:</span> {OFFER.client.distributionRate}</span>
-        </div>
         {/* chips hidden temporarily
         <div className="hero-pill-chips fu4">
           {chips.map((c, i) => (

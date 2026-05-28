@@ -31,7 +31,7 @@ export const OFFER = {
     monthly: 450,
     annual: 5400,
     threeYear: 16200,
-    pct: 24,
+    pct: 14,
     commodityMonthly: 118,
     commodityAnnual: 1416,
     commodityThreeYear: 4248,

@@ -68,7 +68,7 @@ export function KeyMetrics() {
             <div className="km-value">
               {fmt(annualSavings)}&thinsp;<span className="km-unit">Kč</span>
             </div>
-            <div className="km-tag km-tag-green">Oproti {OFFER.current.supplier}</div>
+            <div className="km-tag km-tag-green">{OFFER.savings.pct}&thinsp;% úspora oproti {OFFER.current.supplier}</div>
           </div>
 
           <div className="km-card">
