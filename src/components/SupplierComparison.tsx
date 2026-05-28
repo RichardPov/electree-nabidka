@@ -38,7 +38,6 @@ export function SupplierComparison() {
     ? OFFER.current.monthlyPaymentWithVat
     : Math.round(OFFER.current.monthlyPaymentWithVat / (1 + OFFER.vat));
   const sav = cz - el;
-  const savPct = Math.round((sav / cz) * 100);
 
   return (
     <section className="body-section" style={{ paddingTop: 0 }}>
@@ -64,6 +63,17 @@ export function SupplierComparison() {
             <div className="sc-per sc-per-muted">za měsíc</div>
           </div>
 
+          {/* Middle savings indicator */}
+          <div className="sc-mid">
+            <div className="sc-mid-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--lime)"
+                strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+              </svg>
+            </div>
+            <div className="sc-mid-val">−{fmt(sav)}&thinsp;Kč</div>
+          </div>
+
           {/* ČEZ card */}
           <div className="sc-card sc-card-light">
             <div className="sc-card-header">
@@ -79,15 +89,6 @@ export function SupplierComparison() {
               {fmt(cz)}&thinsp;<span className="sc-amount-unit">Kč</span>
             </div>
             <div className="sc-per sc-per-dim">za měsíc</div>
-          </div>
-        </div>
-
-        {/* Savings row */}
-        <div className="sc-savings">
-          <span className="sc-savings-label">Měsíční úspora</span>
-          <div className="sc-savings-right">
-            <span className="sc-savings-val">−{fmt(sav)}&thinsp;Kč</span>
-            <span className="sc-savings-pct">−{savPct}&thinsp;%</span>
           </div>
         </div>
       </div>

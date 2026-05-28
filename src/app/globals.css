@@ -365,7 +365,14 @@ button { cursor: pointer; font-family: var(--font); border: none; }
    SUPPLIER COMPARISON (two cards)
 ═══════════════════════════════════════════ */
 .sc-headline { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 16px; }
-.sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.sc-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; }
+.sc-mid { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 4px; }
+.sc-mid-circle {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+}
+.sc-mid-val { font-size: 15px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; white-space: nowrap; }
 .sc-card { border-radius: 16px; padding: 24px 28px; }
 .sc-card-dark  { background: var(--dark); }
 .sc-card-light { background: #f4f6f8; }
