@@ -33,11 +33,13 @@ export function Hero() {
           </span>
         </h1>
         <p className="hero-hl-sub fu3">Ročně oproti {OFFER.current.supplier}</p>
+        {/* chips hidden temporarily
         <div className="hero-pill-chips fu4">
           {chips.map((c, i) => (
             <div key={i} className="hero-pill-chip">{c}</div>
           ))}
         </div>
+        */}
       </div>
     </section>
   );
