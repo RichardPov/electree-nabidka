@@ -21,7 +21,7 @@ export function Hero() {
       <div className="hero-inner">
         <p className="hero-eyebrow fu1">
           <span className="hero-eyebrow-dot" aria-hidden="true" />
-          Nabídka platná do {OFFER.validity}
+          Nabídka pro {OFFER.client.name}
         </p>
         <h1 className="hero-headline">
           <span className="hero-hl-line fu2">S Electree</span>
