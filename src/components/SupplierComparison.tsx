@@ -72,6 +72,7 @@ export function SupplierComparison() {
               </svg>
             </div>
             <div className="sc-mid-val">−{fmt(sav)}&thinsp;Kč</div>
+            <div className="sc-mid-sub">měsíčně</div>
           </div>
 
           {/* ČEZ card */}

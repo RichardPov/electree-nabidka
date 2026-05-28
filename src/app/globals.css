@@ -418,6 +418,7 @@ button { cursor: pointer; font-family: var(--font); border: none; }
   display: flex; align-items: center; justify-content: center;
 }
 .sc-mid-val { font-size: 15px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; white-space: nowrap; }
+.sc-mid-sub { font-size: 11px; color: var(--fg3); font-weight: 500; margin-top: -4px; }
 .sc-card { border-radius: 16px; padding: 24px 28px; }
 .sc-card-dark  { background: var(--dark); }
 .sc-card-light { background: #f4f6f8; }
